@@ -40,7 +40,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">About Me</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">About Me</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
             Transforming Curiosity into Code
           </h2>
@@ -56,11 +56,11 @@ const About = () => {
               Who is Vidhi Singh?
             </h3>
 
-            <p className="text-sm md:text-base text-black dark:text-black leading-relaxed font-sans font-medium">
+            <p className="text-sm md:text-base text-slate-900 dark:text-slate-500 leading-relaxed font-sans font-medium">
               I am an ambitious 1st Year Computer Engineering student dedicated to mastering the art and science of software systems. Rather than waiting for senior years, I actively engage in real-world application design, open-source program contributions, and practical machine learning pipelines.
             </p>
 
-            <p className="text-sm md:text-base text-black dark:text-black leading-relaxed font-sans font-medium">
+            <p className="text-sm md:text-base text-slate-900 dark:text-slate-500 leading-relaxed font-sans font-medium">
               My core mission is to construct applications that solve tangible human challenges, combining clean modular architectures with visually stunning user experiences. I thrive at the intersection of algorithmic rigor, aesthetic frontends, and intelligent machine learning backends.
             </p>
 
@@ -105,7 +105,7 @@ const About = () => {
                       {ms.institution}
                     </p>
 
-                    <p className="text-xs text-black dark:text-black mt-2 leading-relaxed font-sans font-medium">
+                    <p className="text-xs text-slate-900 dark:text-slate-500 mt-2 leading-relaxed font-sans font-medium">
                       {ms.desc}
                     </p>
                   </div>

@@ -37,10 +37,10 @@ const CurrentInterestsFuture = () => {
       <div className="absolute top-[30%] right-[-25%] w-[350px] h-[350px] bg-mint/5 rounded-full blur-[90px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Focus & Vision</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Focus & Vision</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-955 dark:text-white">
             Vision & Focus
           </h2>
@@ -49,7 +49,7 @@ const CurrentInterestsFuture = () => {
 
         {/* 3-Column Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          
+
           {/* Card 1: Currently Working On */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
@@ -71,7 +71,7 @@ const CurrentInterestsFuture = () => {
 
                 <ul className="space-y-4">
                   {workingOn.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-655 dark:text-slate-300 font-sans leading-relaxed font-semibold">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-900 dark:text-slate-500 font-sans leading-relaxed font-semibold">
                       <CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -105,7 +105,7 @@ const CurrentInterestsFuture = () => {
 
                 <ul className="space-y-4">
                   {interests.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-655 dark:text-slate-300 font-sans leading-relaxed font-semibold">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-900 dark:text-slate-500 font-sans leading-relaxed font-semibold">
                       <CheckCircle2 size={16} className="text-pink-500 shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -139,7 +139,7 @@ const CurrentInterestsFuture = () => {
 
                 <ul className="space-y-4">
                   {goals.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-655 dark:text-slate-300 font-sans leading-relaxed font-semibold">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-900 dark:text-slate-500 font-sans leading-relaxed font-semibold">
                       <CheckCircle2 size={16} className="text-blue-500 shrink-0 mt-0.5" />
                       {item}
                     </li>

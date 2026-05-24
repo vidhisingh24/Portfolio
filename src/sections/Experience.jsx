@@ -71,11 +71,11 @@ const Experience = () => {
 
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Background</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Background</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
             Practical Experience
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-xl text-xs md:text-sm font-sans font-medium">
+          <p className="text-slate-900 dark:text-slate-500 max-w-xl text-xs md:text-sm font-sans font-medium">
             How I contribute to community programs and engineer software products.
           </p>
           <div className="w-20 h-1 bg-gradient-to-r from-lavender via-softpink to-skyblue rounded-full animate-pulse-slow" />
@@ -121,7 +121,7 @@ const Experience = () => {
                 {/* Point Description List */}
                 <ul className="mt-5 space-y-2.5 ml-1 pt-4 border-t border-dashed border-slate-200 dark:border-slate-800">
                   {exp.points.map((pt, pIdx) => (
-                    <li key={pIdx} className="text-xs text-slate-700 dark:text-slate-200 leading-relaxed flex items-start gap-2 font-sans font-medium">
+                    <li key={pIdx} className="text-xs text-slate-700 dark:text-slate-500 leading-relaxed flex items-start gap-2 font-sans font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-700 dark:bg-slate-300 mt-1.5 shrink-0" />
                       {pt}
                     </li>

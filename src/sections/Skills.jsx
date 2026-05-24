@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, LayoutTemplate, Database, BrainCircuit } from 'lucide-react';
-import { 
-  SiCplusplus, SiPython, SiJavascript, SiC, 
-  SiReact, SiTailwindcss, SiHtml5, SiBootstrap, 
-  SiNodedotjs, SiExpress, SiGit, SiGithub, 
-  SiLinux, SiFigma, SiPostman, SiNumpy, SiPandas, 
-  SiTensorflow, SiScikitlearn 
+import {
+  SiCplusplus, SiPython, SiJavascript, SiC,
+  SiReact, SiTailwindcss, SiHtml5, SiBootstrap,
+  SiNodedotjs, SiExpress, SiGit, SiGithub,
+  SiLinux, SiFigma, SiPostman, SiNumpy, SiPandas,
+  SiTensorflow, SiScikitlearn
 } from 'react-icons/si';
 import { FaJava, FaChartLine } from 'react-icons/fa';
 import { TbBrandVscode } from 'react-icons/tb';
@@ -65,10 +65,10 @@ const Skills = () => {
       <div className="absolute top-[40%] right-[-25%] w-[350px] h-[350px] bg-mint/5 rounded-full blur-[90px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Title */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Tech Stack</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Tech Stack</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
             Tools of the Trade
           </h2>
@@ -81,11 +81,10 @@ const Skills = () => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer ${
-                activeCategory === cat.id
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer ${activeCategory === cat.id
                   ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-md scale-105'
                   : 'glass-effect text-slate-700 hover:text-slate-950 dark:text-slate-355 dark:hover:text-white border border-glassBorder dark:border-glassBorderDark'
-              }`}
+                }`}
             >
               {cat.icon}
               {cat.name}
@@ -94,7 +93,7 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         >
@@ -108,7 +107,7 @@ const Skills = () => {
                 transition={{ duration: 0.3 }}
                 key={skill.name}
               >
-                <GlassCard 
+                <GlassCard
                   className="h-full border border-glassBorder dark:border-glassBorderDark p-5 flex flex-col justify-between"
                   scale={1.03}
                   tiltMaxAngleX={8}
@@ -124,13 +123,12 @@ const Skills = () => {
                           {skill.name}
                         </h4>
                       </div>
-                      
-                      <span className={`text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                        skill.level === 'Advanced' ? 'bg-purple-100 text-purple-700 dark:bg-purple-950/40 dark:text-lavender' :
-                        skill.level === 'Proficient' ? 'bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-skyblue' :
-                        skill.level === 'Intermediate' ? 'bg-pink-100 text-pink-700 dark:bg-pink-950/40 dark:text-softpink' :
-                        'bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-mint'
-                      }`}>
+
+                      <span className={`text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider ${skill.level === 'Advanced' ? 'bg-purple-100 text-purple-700 dark:bg-purple-950/40 dark:text-lavender' :
+                          skill.level === 'Proficient' ? 'bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-skyblue' :
+                            skill.level === 'Intermediate' ? 'bg-pink-100 text-pink-700 dark:bg-pink-950/40 dark:text-softpink' :
+                              'bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-mint'
+                        }`}>
                         {skill.level}
                       </span>
                     </div>

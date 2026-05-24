@@ -49,10 +49,10 @@ const LearningJourney = () => {
       <div className="absolute top-[20%] left-[-25%] w-[400px] h-[400px] bg-lavender/5 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Roadmap</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Roadmap</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
             My Learning Journey
           </h2>
@@ -85,14 +85,14 @@ const LearningJourney = () => {
                       <h3 className="text-base font-extrabold text-slate-900 dark:text-white font-display">
                         {step.title}
                       </h3>
-                      <span className="text-[10px] font-bold text-purple-700 dark:text-lavender">
+                      <span className="text-[10px] font-bold text-purple-700 dark:text-dark lavender">
                         {step.phase}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-700 dark:text-slate-200 mt-3.5 leading-relaxed font-sans font-medium">
+                <p className="text-xs text-slate-900 dark:text-slate-500 mt-3.5 leading-relaxed font-sans font-medium">
                   {step.desc}
                 </p>
               </GlassCard>

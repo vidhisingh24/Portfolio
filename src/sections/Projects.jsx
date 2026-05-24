@@ -138,10 +138,10 @@ const Projects = () => {
                   <div className={`lg:col-span-5 flex flex-col justify-between space-y-6 ${idx % 2 === 1 ? 'lg:order-last' : ''}`}>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs uppercase font-extrabold tracking-widest text-purple-650 dark:text-lavender">
+                        <span className="text-xs uppercase font-extrabold tracking-widest text-purple-800 dark:text-slate-700">
                           {proj.subtitle}
                         </span>
-                        <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-green-50 text-green-700 dark:bg-green-950/30 dark:text-mint border border-green-200 dark:border-green-900/40 uppercase tracking-wider flex items-center gap-1 select-none">
+                        <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-green-50 text-green-900 dark:bg-green-950/30 dark:text-mint border border-green-200 dark:border-green-900/40 uppercase tracking-wider flex items-center gap-1 select-none">
                           <CheckCircle2 size={8} /> Active System
                         </span>
                       </div>

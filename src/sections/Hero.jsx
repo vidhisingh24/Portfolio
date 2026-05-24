@@ -24,7 +24,7 @@ const Hero = () => {
     const height = container.clientHeight;
 
     const scene = new THREE.Scene();
-    
+
     // Camera
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
     camera.position.z = 5;
@@ -153,18 +153,18 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
         {/* Left Column - Copy & CTA */}
         <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-effect border border-glassBorder dark:border-glassBorderDark text-xs font-semibold text-purple-700 dark:text-lavender w-fit shadow-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-purple-500 animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-purple-900 animate-ping" />
             Recruiter Ready Portfolio
           </motion.div>
 
           <div className="space-y-2">
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -172,8 +172,8 @@ const Hero = () => {
             >
               Hi, I'm
             </motion.p>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -181,8 +181,8 @@ const Hero = () => {
             >
               Vidhi Singh
             </motion.h1>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -208,7 +208,7 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -218,7 +218,7 @@ const Hero = () => {
           </motion.p>
 
           {/* Social Icons & CTAs */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -227,32 +227,32 @@ const Hero = () => {
             <CustomButton href="#projects" variant="primary">
               View Projects <ArrowUpRight size={16} />
             </CustomButton>
-            <CustomButton href="#contact" variant="secondary">
+            <CustomButton href="#contact" variant="primary">
               Contact Me
             </CustomButton>
-            
+
             <div className="flex items-center gap-3 ml-2">
-              <a 
-                href="https://github.com/vidhisingh24" 
-                target="_blank" 
+              <a
+                href="https://github.com/vidhisingh24"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
+                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-800 hover:text-slate-900 dark:text-slate-700 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
                 aria-label="GitHub profile"
               >
                 <Github size={18} />
               </a>
-              <a 
-                href="https://LinkedIn.com/in/vidhi-singh" 
-                target="_blank" 
+              <a
+                href="https://LinkedIn.com/in/vidhi-singh"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
+                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-800 hover:text-slate-900 dark:text-slate-700 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
                 aria-label="LinkedIn profile"
               >
                 <Linkedin size={18} />
               </a>
-              <a 
+              <a
                 href="mailto:vidhiisingh2403@gmail.com"
-                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
+                className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-800 hover:text-slate-900 dark:text-slate-700 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
                 aria-label="Send email"
               >
                 <Mail size={18} />
@@ -261,19 +261,19 @@ const Hero = () => {
           </motion.div>
 
           {/* Metrics Quick Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6"
           >
             {stats.map((stat, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="glass-effect rounded-2xl p-4 border border-glassBorder/80 dark:border-glassBorderDark flex flex-col justify-between h-[100px] hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">{stat.label}</span>
+                  <span className="text-xs text-slate-700 dark:text-slate-600 font-medium">{stat.label}</span>
                   {stat.icon}
                 </div>
                 <span className="text-xl font-bold text-slate-950 dark:text-white font-display mt-2">{stat.val}</span>
@@ -283,7 +283,7 @@ const Hero = () => {
         </div>
 
         {/* Right Column - 3D Render Canvas */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -294,7 +294,7 @@ const Hero = () => {
 
           {/* Gradient Overlay for the 3D Sphere */}
           <div className="absolute inset-0 bg-gradient-to-tr from-cream/20 via-transparent to-cream/20 dark:from-slate-950/20 dark:to-slate-950/20 pointer-events-none z-20" />
-          
+
           {/* Subtle Ring Glow behind the Canvas */}
           <div className="w-[300px] h-[300px] rounded-full border-2 border-dashed border-lavender/30 animate-[spin_40s_linear_infinite] absolute pointer-events-none" />
           <div className="w-[350px] h-[350px] rounded-full border border-softpink/20 animate-[spin_60s_linear_infinite_reverse] absolute pointer-events-none" />

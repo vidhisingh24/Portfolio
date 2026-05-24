@@ -49,10 +49,10 @@ const Achievements = () => {
       <div className="absolute top-[30%] left-[-25%] w-[300px] h-[300px] bg-softpink/5 rounded-full blur-[80px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Milestones</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Milestones</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
             Key Accomplishments
           </h2>
@@ -69,7 +69,7 @@ const Achievements = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
             >
-              <GlassCard 
+              <GlassCard
                 className="h-full border border-glassBorder dark:border-glassBorderDark p-7 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-xs"
                 scale={1.02}
                 tiltMaxAngleX={8}
@@ -88,8 +88,8 @@ const Achievements = () => {
                   <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
                     {ach.title}
                   </h3>
-                  
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed font-sans font-medium">
+
+                  <p className="text-xs text-slate-900 dark:text-slate-500 mt-2.5 leading-relaxed font-sans font-medium">
                     {ach.desc}
                   </p>
                 </div>

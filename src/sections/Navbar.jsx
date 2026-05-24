@@ -63,15 +63,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-        scrolled 
-          ? 'py-3.5 bg-white/60 dark:bg-slate-950/60 shadow-lg border-b border-glassBorder dark:border-glassBorderDark backdrop-blur-md' 
-          : 'py-6 bg-transparent'
-      }`}>
+      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${scrolled
+        ? 'py-3.5 bg-white/60 dark:bg-slate-950/60 shadow-lg border-b border-glassBorder dark:border-glassBorderDark backdrop-blur-md'
+        : 'py-6 bg-transparent'
+        }`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo / Brand Name */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => handleNavClick(e, '#home', 'Home')}
             className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-slate-800 dark:text-white cursor-pointer select-none group"
           >
@@ -90,11 +89,10 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href, item.name)}
-                className={`relative px-4 py-2 text-xs font-semibold tracking-wide transition-colors font-sans duration-200 cursor-pointer ${
-                  activeSection === item.name 
-                    ? 'text-slate-900 dark:text-white' 
-                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
-                }`}
+                className={`relative px-4 py-2 text-xs font-semibold tracking-wide transition-colors font-sans duration-200 cursor-pointer ${activeSection === item.name
+                  ? 'text-slate-900 dark:text-white'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+                  }`}
               >
                 {activeSection === item.name && (
                   <motion.span
@@ -120,10 +118,10 @@ const Navbar = () => {
             </button>
 
             {/* Resume Button */}
-            <CustomButton 
-              variant="primary" 
+            <CustomButton
+              variant="primary"
               className="!py-2.5 !px-5 text-xs font-semibold"
-              href="#resume-placeholder" 
+              href="#resume-placeholder"
               download="Vidhi_Singh_Resume.pdf"
             >
               <FileText size={14} /> Resume
@@ -149,10 +147,10 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-      </nav>
+      </nav >
 
       {/* Mobile Menu Panel */}
-      <AnimatePresence>
+      < AnimatePresence >
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -167,16 +165,15 @@ const Navbar = () => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href, item.name)}
-                  className={`px-4 py-3 rounded-2xl text-sm font-semibold tracking-wide font-sans transition-colors ${
-                    activeSection === item.name 
-                      ? 'bg-gradient-to-r from-lavender/30 to-softpink/30 text-purple-700 dark:text-lavender' 
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-800/40'
-                  }`}
+                  className={`px-4 py-3 rounded-2xl text-sm font-semibold tracking-wide font-sans transition-colors ${activeSection === item.name
+                    ? 'bg-gradient-to-r from-lavender/30 to-softpink/30 text-purple-700 dark:text-lavender'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-800/40'
+                    }`}
                 >
                   {item.name}
                 </a>
               ))}
-              
+
               <div className="h-px bg-slate-200 dark:bg-slate-800 my-2" />
 
               <div className="flex items-center justify-between gap-4 px-2">
@@ -191,8 +188,9 @@ const Navbar = () => {
               </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        )
+        }
+      </AnimatePresence >
     </>
   );
 };

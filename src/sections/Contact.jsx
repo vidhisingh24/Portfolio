@@ -26,7 +26,7 @@ const Contact = () => {
     toast.success('Message sent successfully! Vidhi will get back to you soon.', {
       description: `Thank you, ${data.name}!`,
     });
-    
+
     reset();
   };
 
@@ -37,10 +37,10 @@ const Contact = () => {
       <div className="absolute bottom-[10%] right-[-25%] w-[350px] h-[350px] bg-lavender/5 rounded-full blur-[90px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">Get In Touch</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Get In Touch</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-800 dark:text-white">
             Let's Build Something Meaningful Together
           </h2>
@@ -49,14 +49,14 @@ const Contact = () => {
 
         {/* Two-Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-stretch">
-          
+
           {/* Left Side: Contact Information Cards */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             <div className="space-y-4">
               <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
                 Contact Information
               </h3>
-              <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed font-semibold">
+              <p className="text-xs md:text-sm text-slate-900 dark:text-slate-500 font-sans leading-relaxed font-semibold">
                 Whether you want to discuss a new software engineering internship opportunity, contribute to open-source systems, or simply connect—my inbox is open!
               </p>
             </div>
@@ -71,7 +71,7 @@ const Contact = () => {
                   <Mail size={18} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400">Email Me</p>
+                  <p className="text-[10px] uppercase font-bold text-slate-900 dark:text-slate-500">Email Me</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-white font-sans group-hover:underline">
                     vidhiisingh2403@gmail.com
                   </p>
@@ -89,7 +89,7 @@ const Contact = () => {
                   <Linkedin size={18} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400">Connect LinkedIn</p>
+                  <p className="text-[10px] uppercase font-bold text-slate-900 dark:text-slate-500">Connect LinkedIn</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-white font-sans group-hover:underline">
                     linkedin.com/in/vidhi-singh
                   </p>
@@ -107,7 +107,7 @@ const Contact = () => {
                   <Github size={18} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400">Explore Repos</p>
+                  <p className="text-[10px] uppercase font-bold text-slate-900 dark:text-slate-500">Explore Repos</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-white font-sans group-hover:underline">
                     github.com/vidhisingh24
                   </p>
@@ -150,7 +150,7 @@ const Contact = () => {
                       type="email"
                       className={`w-full px-4 py-3 text-xs bg-white/40 dark:bg-slate-900/60 text-slate-800 dark:text-white border ${errors.email ? 'border-red-400' : 'border-glassBorder dark:border-glassBorderDark'} rounded-xl focus:outline-none focus:border-purple-400 transition-colors font-sans`}
                       placeholder="jane.doe@example.com"
-                      {...register('email', { 
+                      {...register('email', {
                         required: 'Email address is required',
                         pattern: {
                           value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -190,7 +190,7 @@ const Contact = () => {
                       rows={5}
                       className={`w-full px-4 py-3 text-xs bg-white/40 dark:bg-slate-900/60 text-slate-800 dark:text-white border ${errors.message ? 'border-red-400' : 'border-glassBorder dark:border-glassBorderDark'} rounded-xl focus:outline-none focus:border-purple-400 transition-colors font-sans resize-none`}
                       placeholder="Hi Vidhi, I saw your portfolio and would love to chat about..."
-                      {...register('message', { 
+                      {...register('message', {
                         required: 'Message content is required',
                         minLength: { value: 10, message: 'Message must exceed 10 characters' }
                       })}

@@ -49,7 +49,7 @@ const AIJourney = () => {
 
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-lavender">AI & ML Path</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text- dark lavender">AI & ML Path</span>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white flex items-center justify-center gap-2">
             <BrainCircuit className="text-purple-500 animate-pulse" size={32} /> AI & Machine Learning Journey
           </h2>
