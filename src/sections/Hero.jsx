@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUpRight, CheckCircle2, Star, Brain, BookOpen } from 'lucide-react';
-import * as THREE from 'three';
 import CustomButton from '../components/CustomButton';
+import profileImage from "../assets/profile.png";
 
 const stats = [
   { label: 'Professional Projects', val: '4+', icon: <CheckCircle2 className="text-purple-400" size={18} /> },
@@ -282,22 +282,21 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Column - 3D Render Canvas */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-5 h-[350px] md:h-[450px] relative w-full flex items-center justify-center"
+          className="lg:col-span-5 flex items-center justify-center"
         >
-          {/* Three.js DOM Container */}
-          <div ref={canvasRef} className="w-full h-full cursor-grab active:cursor-grabbing absolute inset-0 z-10" />
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-purple-500/20 blur-3xl"></div>
 
-          {/* Gradient Overlay for the 3D Sphere */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-cream/20 via-transparent to-cream/20 dark:from-slate-950/20 dark:to-slate-950/20 pointer-events-none z-20" />
-
-          {/* Subtle Ring Glow behind the Canvas */}
-          <div className="w-[300px] h-[300px] rounded-full border-2 border-dashed border-lavender/30 animate-[spin_40s_linear_infinite] absolute pointer-events-none" />
-          <div className="w-[350px] h-[350px] rounded-full border border-softpink/20 animate-[spin_60s_linear_infinite_reverse] absolute pointer-events-none" />
+            <img
+              src={profileImage}
+              alt="Vidhi Singh"
+              className="w-[350px] h-[350px] md:w-[450px] md:h-[450px] object-cover rounded-full border-2 border-purple-500 shadow-2xl relative z-10"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
