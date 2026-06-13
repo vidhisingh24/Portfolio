@@ -121,8 +121,8 @@ const Navbar = () => {
             <CustomButton
               variant="primary"
               className="!py-2.5 !px-5 text-xs font-semibold"
-              href="#resume-placeholder"
-              download="Vidhi_Singh_Resume.pdf"
+              href="/Vidhi_Singh_Resume.pdf"
+              target="_blank"
             >
               <FileText size={14} /> Resume
             </CustomButton>
