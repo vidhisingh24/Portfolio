@@ -242,7 +242,7 @@ const Hero = () => {
                 <Github size={18} />
               </a>
               <a
-                href="https://LinkedIn.com/in/vidhi-singh"
+                href="https://www.linkedin.com/in/vidhisingh24"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full glass-effect flex items-center justify-center text-slate-800 hover:text-slate-900 dark:text-slate-700 dark:hover:text-white hover:scale-105 transition-all shadow-sm border border-glassBorder dark:border-glassBorderDark"
