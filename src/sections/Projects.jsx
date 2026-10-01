@@ -6,90 +6,90 @@ import GlassCard from '../components/GlassCard';
 const projects = [
   {
     id: 1,
-    title: 'MedEase AI',
-    subtitle: 'Intelligent Healthcare Ecosystem',
-    description: 'A production-grade healthcare ecosystem combining an AI-driven symptom checker, digital lockers with OCR classification, doctor scheduling maps, and dual-language SOS triggers.',
+    title: 'CollabSpace',
+    subtitle: 'Real-time Collaboration Platform',
+    description: 'A collaboration workspace that brings real-time document editing, a shared code editor, an infinite whiteboard and kanban boards into one place, with an AI assistant built in.',
     gradient: 'from-purple-500/10 via-indigo-500/10 to-lavender/20',
     borderGlow: 'hover:border-purple-300 dark:hover:border-purple-900/60',
-    tech: ['Next.js 13', 'React 18', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Leaflet', 'JWT Auth'],
+    tech: ['Next.js 14', 'TypeScript', 'Node.js', 'Express', 'Yjs CRDT', 'WebSockets', 'PostgreSQL', 'Redis', 'Docker'],
     metrics: {
-      accuracy: '94.2% AI Accuracy',
-      latency: '< 180ms Diagnostic Response',
-      users: 'Multi-profile Support'
+      sync: 'Yjs CRDT live co-editing',
+      resilience: 'Chaos-tested node failover',
+      tests: '17 CRDT convergence tests'
     },
     caseStudy: {
-      problem: 'Traditional healthcare delivery is highly fragmented, leaving users struggling to aggregate laboratory reports, receive instant symptom feedback, contact local doctors, or dispatch immediate SOS tracking coordinate packets during emergencies.',
-      solution: 'Constructed an all-in-one ecosystem integrating client-side rule engines for initial symptom checks, digital lockers with OCR classifications, real-time doctor scheduling maps, and dual-language interfaces (English & हिंदी) with voice commands.',
-      architecture: 'Model-View-Controller pattern in Next.js. State manages multilocational coordinates and triggers background asynchronous geocoding requests. PDF parsers decode uploaded medical credentials client-side.',
-      challenges: 'Solving secure cross-profile medical authorization and reducing geocoding latency. Solved using hashed cookie tables and caching Leaflet maps layer caches.',
-      github: 'https://github.com/vidhisingh24/MedEase-AI',
-      demo: 'https://github.com/vidhisingh24/MedEase-AI'
+      problem: 'Teams juggle separate tools for docs, code, whiteboards and task tracking, and real-time editors struggle when two people edit the same spot or someone goes offline.',
+      solution: 'Built one workspace where documents (Tiptap), code (Monaco) and whiteboards sync live through Yjs CRDTs, with presence cursors, inline comments, version history, offline editing and a kanban board.',
+      architecture: 'Next.js frontend talking to a TypeScript WebSocket gateway that shards document rooms across nodes. Redis backs the shard registry, PostgreSQL (Supabase) stores workspace data, and a Grafana dashboard tracks live gateway and CRDT metrics.',
+      challenges: 'Keeping documents identical across gateway nodes during failures. Verified with chaos tests: 100 clients across 2 nodes converge to the same state, and killing a node or restarting Redis loses no data.',
+      github: 'https://github.com/vidhisingh24/Collabspace',
+      demo: null
     }
   },
   {
     id: 2,
-    title: 'ZeroWasteLink 2.0',
-    subtitle: 'Food Rescue Ecosystem',
-    description: 'A real-time distribution engine connecting restaurants, NGOs, and food rescue volunteers across India to prevent food waste through dynamic routing and quality checks.',
+    title: 'ZeroWaste Link',
+    subtitle: 'Food Rescue Platform',
+    description: 'A real-time food rescue platform connecting restaurants, NGOs and volunteers across India, with role-based dashboards, smart NGO matching and live delivery tracking.',
     gradient: 'from-emerald-500/10 via-teal-500/10 to-mint/20',
     borderGlow: 'hover:border-emerald-300 dark:hover:border-emerald-900/60',
-    tech: ['Next.js', 'TypeScript', 'Express.js', 'MongoDB', 'Socket.io', 'Leaflet Map', 'Recharts'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Leaflet', 'Recharts', 'Express', 'MongoDB', 'Socket.IO'],
     metrics: {
-      routing: 'Dynamic Route Optimization',
-      freshness: 'AI Freshness Analysis',
-      delivery: 'Real-time Socket Sync'
+      roles: '4 role-based dashboards',
+      tracking: 'Live delivery map',
+      matching: 'Smart NGO matching'
     },
     caseStudy: {
-      problem: 'Tons of high-quality restaurant leftovers are discarded due to communication gaps between commercial kitchens and non-profit distributing channels, paired with delivery delays that compromise food safety.',
-      solution: 'Developed a WebSockets-powered hub mapping food donor pins against NGOs. Users utilize automated freshness estimates and volunteers claim delivery nodes with interactive route overlays.',
-      architecture: 'Distributed pub/sub event stream via Socket.io. Database models partition volunteer records, organization profile scopes, and donation ticket statuses. Geographic queries leverage MongoDB geospatial indexing.',
-      challenges: 'Handling concurrent state syncs when multiple volunteers claim the same batch. Solved using atomic document locks and optimistic concurrency UI rollbacks.',
-      github: 'https://github.com/vidhisingh24/ZeroWasteLink-2.0',
-      demo: 'https://github.com/vidhisingh24/ZeroWasteLink-2.0'
+      problem: 'Surplus food from restaurants, hotels and events goes to waste because donors, NGOs and volunteers have no shared, real-time way to coordinate pickups.',
+      solution: 'Built dashboards for donors, NGOs, volunteers and admins. Donors post food with a simulated AI freshness check, NGOs see smart-matched donations, and accepting one instantly updates every dashboard and the live map.',
+      architecture: 'Next.js + TypeScript frontend on a pub/sub client store. Runs fully in demo mode with no backend, or in server mode against an Express + MongoDB + Socket.io API, falling back to demo mode if the server is unreachable.',
+      challenges: 'Keeping donor, NGO and volunteer views in sync as a donation changes state. Solved with a single pub/sub store, so one action propagates to every dashboard, the volunteer task list and the map.',
+      github: 'https://github.com/vidhisingh24/ZeroWaste_Link',
+      demo: null
     }
   },
   {
     id: 3,
-    title: 'AI Study Companion',
-    subtitle: 'Intelligent Student Productivity Tool',
-    description: 'An adaptive educational assistant offering customized flashcards, automated notes, custom PDF summaries, quiz triggers, and behavioral analytics charts.',
+    title: 'PaySlip',
+    subtitle: 'Income & Tax Tracker for Freelancers',
+    description: 'Tracks what freelancers and gig workers earn, logs deductible expenses, and estimates income tax, self-employment tax and quarterly payments from a deterministic tax engine.',
     gradient: 'from-pink-500/10 via-rose-500/10 to-softpink/20',
     borderGlow: 'hover:border-pink-300 dark:hover:border-pink-900/60',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Natural NLP', 'Framer Motion', 'Tailwind'],
+    tech: ['React 19', 'TypeScript', 'Vite', 'Node.js', 'Express 5', 'MongoDB', 'Redis', 'Plaid', 'Jest', 'Playwright'],
     metrics: {
-      generation: 'Instant QA Flashcards',
-      retention: 'Adaptive repeat intervals',
-      summarizer: 'Hierarchical PDF summaries'
+      taxes: 'Deterministic tax engine',
+      updates: 'Live updates via SSE',
+      testing: 'Jest + Playwright e2e'
     },
     caseStudy: {
-      problem: 'Students face information overload, struggling to extract active recall cards from long textbooks and monitor study efficiency metrics over semesters.',
-      solution: 'Built an NLP study organizer. Students upload study PDFs; the server extracts key definitions, generates multiple-choice quizzes, structures study timelines, and tracks session timers.',
-      architecture: 'Express backend reading uploaded files into natural language parsing pipelines, converting texts to tokens, extracting high-frequency technical noun pairs, and saving questions into user-scoped study decks.',
-      challenges: 'Generating accurate, grammatically sound question-answer pairs without high LLM API billing. Solved using client-side sentence mapping and rule-based heuristic parsing.',
-      github: 'https://github.com/vidhisingh24/AI-Study-Companion',
-      demo: 'https://github.com/vidhisingh24/AI-Study-Companion'
+      problem: 'Freelancers rarely know what they owe until tax time, and many tools either guess or present AI-generated numbers with the same authority as real calculations.',
+      solution: 'Built income and expense tracking with optional Plaid bank import, receipt uploads, a quarterly payment schedule with deadline countdowns, and an hourly-rate comparison against real job postings.',
+      architecture: 'Modular Express API (auth, income, expenses, tax engine, Plaid, notifications) on MongoDB and Redis, a typed React client, and Server-Sent Events that push new income without a refresh. All LLM calls go through one AI gateway module.',
+      challenges: 'Keeping financial figures trustworthy next to AI output. The tax engine is pure (no network, no AI), an ESLint rule blocks it from importing the AI module, and model-generated categories are shown with their confidence.',
+      github: 'https://github.com/vidhisingh24/PaySlip',
+      demo: null
     }
   },
   {
     id: 4,
-    title: 'DevTrack Analytics',
-    subtitle: 'GitHub Metrics Dashboard',
-    description: 'A developer metrics analytics platform parsing API datasets to generate repository health scoring, language pie charts, and streak calendars.',
+    title: 'ThinkBoard',
+    subtitle: 'MERN Notes App',
+    description: 'A full-stack note-taking app to capture, organize and manage ideas, with persistent cloud storage and a clean, responsive interface.',
     gradient: 'from-blue-500/10 via-sky-500/10 to-skyblue/20',
     borderGlow: 'hover:border-blue-300 dark:hover:border-blue-900/60',
-    tech: ['React 18', 'GitHub API', 'Recharts', 'Tailwind CSS', 'Framer Motion', 'Vanilla CSS'],
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB Atlas', 'Mongoose'],
     metrics: {
-      integration: 'Dynamic API Fetching',
-      data: 'Rich SVG Render Engine',
-      caching: 'Local Storage State Sync'
+      api: 'RESTful CRUD API',
+      storage: 'MongoDB Atlas',
+      deploy: 'Live on Render'
     },
     caseStudy: {
-      problem: 'GitHub profiles are static and lack clear developer productivity insights, language balances, or comparative analysis visualizations to impress recruiters in 5 seconds.',
-      solution: 'Constructed a dynamic analytics console. It queries the GitHub REST API for a user, aggregates repository sizes, parses programming languages, and compiles coding activity charts.',
-      architecture: 'React state engine with hook triggers. Employs SVG components for calendar styling and Recharts layout modules for repository weight distributions.',
-      challenges: 'Handling client-side GitHub API rate limits. Resolved using token-scoped API options and local storage caching profiles for rapid page loads.',
-      github: 'https://github.com/vidhisingh24/DevTrack-Analytics',
-      demo: 'https://github.com/vidhisingh24/DevTrack-Analytics'
+      problem: 'Quick ideas get scattered across chats and paper, with no simple place to capture, edit and revisit them from any device.',
+      solution: 'Built a MERN app with create, edit and delete flows, persistent storage on MongoDB Atlas, and a mobile-friendly Tailwind UI.',
+      architecture: 'React + Vite frontend calling an Express REST API (GET, POST, PUT, DELETE on /api/notes), with the backend split into config, routes, controllers and Mongoose models.',
+      challenges: 'Structuring a clean backend for a first full-stack project: separating routes, controllers and models so the API stays easy to extend, with user authentication next on the roadmap.',
+      github: 'https://github.com/vidhisingh24/ThinkBoard',
+      demo: 'https://thinkboard-v29z.onrender.com/'
     }
   }
 ];
@@ -169,7 +169,7 @@ const Projects = () => {
 
                     {/* Impact metrics panel */}
                     <div className="pt-4 border-t border-dashed border-slate-200 dark:border-slate-800">
-                      <h4 className="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 mb-3 font-sans">Key Metrics</h4>
+                      <h4 className="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 mb-3 font-sans">Highlights</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {Object.entries(proj.metrics).map(([key, val]) => (
                           <div key={key} className="bg-white/80 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-xs flex flex-col justify-between hover:border-purple-300 dark:hover:border-purple-900/50 transition-all duration-300">
@@ -190,14 +190,16 @@ const Projects = () => {
                       >
                         <Github size={14} /> GitHub Repository
                       </a>
-                      <a
-                        href={proj.caseStudy.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-800 hover:bg-slate-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all text-xs font-bold shadow-xs border border-slate-200 dark:border-slate-750 cursor-pointer"
-                      >
-                        Live Demo <ArrowUpRight size={14} />
-                      </a>
+                      {proj.caseStudy.demo && (
+                        <a
+                          href={proj.caseStudy.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-800 hover:bg-slate-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all text-xs font-bold shadow-xs border border-slate-200 dark:border-slate-750 cursor-pointer"
+                        >
+                          Live Demo <ArrowUpRight size={14} />
+                        </a>
+                      )}
                     </div>
                   </div>
 
