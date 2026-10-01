@@ -5,9 +5,9 @@ import { MessageSquare, X, Sparkles, Send, User } from 'lucide-react';
 const responses = {
   "Who are you?": "I'm Vidhi Singh, an aspiring Software Engineer and Computer Engineering Student. I love building polished, high-performance web applications and exploring AI/ML concepts.",
   "Skills": "My tech stack includes C++, Python, JavaScript, React, Tailwind CSS, Node.js/Express, Git, and data science libraries like NumPy, Pandas, Scikit-learn, and TensorFlow.",
-  "Projects": "I have built 4 major projects: MedEase AI (health tech ecosystem), ZeroWasteLink 2.0 (food waste rescue platform), AI Study Companion (student productivity tool), and DevTrack Analytics (GitHub dashboard).",
+  "Projects": "I have built 4 major projects: CollabSpace (real-time collaboration platform), ZeroWaste Link (food rescue platform), PaySlip (income and tax tracker for freelancers), and ThinkBoard (MERN notes app).",
   "Education": "I'm a 1st-year Computer Engineering Student in India, learning CS core principles, Data Structures & Algorithms, and modern software design patterns.",
-  "Contact": "You can email me at vidhiisingh2403@gmail.com, or connect on LinkedIn (linkedin.com/in/vidhi-singh) and GitHub (github.com/vidhisingh24). Let's build something!",
+  "Contact": "You can email me at vidhiisingh2403@gmail.com, or connect on LinkedIn (linkedin.com/in/vidhisingh24) and GitHub (github.com/vidhisingh24). Let's build something!",
   "Experience": "I've contributed to open-source programs like GirlScript Summer of Code (GSSoC) and Summer of Source Code (SSOC), and I build full-stack projects independently.",
   "AI Journey": "My AI/ML journey includes studying algorithms, conducting data preprocessing with Pandas/NumPy, implementing models with Scikit-learn, and learning deep neural networks.",
   "GitHub": "You can find my open-source work at github.com/vidhisingh24. I actively commit, review pull requests, and maintain code repositories."
