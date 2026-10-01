@@ -80,7 +80,7 @@ const Contact = () => {
 
               {/* LinkedIn Link */}
               <a
-                href="https://LinkedIn.com/in/vidhi-singh"
+                href="https://www.linkedin.com/in/vidhisingh24"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 glass-effect border border-glassBorder dark:border-glassBorderDark p-4 rounded-2xl hover:border-pink-300 dark:hover:border-slate-800 transition-colors group cursor-pointer shadow-xs"
@@ -91,7 +91,7 @@ const Contact = () => {
                 <div>
                   <p className="text-[10px] uppercase font-bold text-slate-900 dark:text-slate-500">Connect LinkedIn</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-white font-sans group-hover:underline">
-                    linkedin.com/in/vidhi-singh
+                    linkedin.com/in/vidhisingh24
                   </p>
                 </div>
               </a>
