@@ -6,7 +6,7 @@ import GlassCard from '../components/GlassCard';
 const achievements = [
   {
     title: 'Advanced Project Engineering',
-    desc: 'Engineered MedEase AI and ZeroWasteLink 2.0 with professional responsive design and rich client validation.',
+    desc: 'Built CollabSpace, ZeroWaste Link, PaySlip and ThinkBoard end to end, from real-time collaboration to tax tracking.',
     val: '4 Platforms Built',
     icon: <Layers className="text-purple-500" size={22} />
   },
