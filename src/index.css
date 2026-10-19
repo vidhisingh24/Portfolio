@@ -1,238 +1,240 @@
 @import "tailwindcss";
 
+/* Dark mode follows the `.dark` class on <html> (set before paint in index.html,
+   toggled from the navbar). Without this, Tailwind v4 `dark:` follows the OS only. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------
+   Design tokens. Every color on the site comes from here.
+   Light = cream + lavender. Dark = near-black warm + the same lavender.
+   ------------------------------------------------------------------ */
+:root {
+  --bg: #FFFBF5;
+  --surface: #FFFFFF;
+  --surface-2: #F6F0E8;
+  --border: #ECE4D8;
+  --border-strong: #DCD1C2;
+  --text: #1C1729;
+  --text-muted: #57516A;
+  --accent: #C4B5FD;          /* lavender: fills, borders, decoration */
+  --accent-strong: #5B3FC4;   /* deeper lavender: text + links (AA on --bg) */
+  --accent-soft: #EEE9FF;
+  --peach: #FED7C3;
+  --mint: #C6F0D6;
+  --ok: #15803D;
+  --shadow: 0 1px 2px rgba(28, 23, 41, 0.04), 0 10px 28px -14px rgba(28, 23, 41, 0.16);
+  --grain-opacity: 0.045;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #141210;
+  --surface: #1C1917;
+  --surface-2: #24201C;
+  --border: #302B26;
+  --border-strong: #423B35;
+  --text: #F3EEE7;
+  --text-muted: #B3AAA0;
+  --accent: #C4B5FD;
+  --accent-strong: #C4B5FD;
+  --accent-soft: rgba(196, 181, 253, 0.12);
+  --peach: #FDBA9A;
+  --mint: #86EFAC;
+  --ok: #4ADE80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+  --grain-opacity: 0.035;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+
+/* Tailwind utilities backed by the tokens: bg-bg, bg-surface, text-ink, text-muted,
+   border-line, text-accent-strong, bg-accent-soft, font-display, font-mono ... */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-peach: var(--peach);
+  --color-ok: var(--ok);
+}
+
 @theme {
+  /* Legacy palette names still used by a few components */
   --color-lavender: #C4B5FD;
   --color-softpink: #FBCFE8;
   --color-skyblue: #BFDBFE;
   --color-mint: #BBF7D0;
   --color-cream: #FFFBF5;
-  --color-glass-bg: rgba(255, 255, 255, 0.45);
-  --color-glass-border: rgba(255, 255, 255, 0.35);
-  --color-glass-bg-dark: rgba(15, 23, 42, 0.45);
-  --color-glass-border-dark: rgba(255, 255, 255, 0.08);
 
-  --font-sans: 'Inter', 'Manrope', sans-serif;
-  --font-display: 'Space Grotesk', 'Clash Display', sans-serif;
-
-  --animate-blob-spin: blobSpin 25s infinite linear;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-float-delayed: float 6s ease-in-out infinite 3s;
-  --animate-pulse-slow: pulseSlow 8s ease-in-out infinite;
-
-  @keyframes blobSpin {
-    0% { transform: rotate(0deg) scale(1); }
-    33% { transform: rotate(120deg) scale(1.1) translate(40px, -60px); }
-    66% { transform: rotate(240deg) scale(0.95) translate(-40px, 30px); }
-    100% { transform: rotate(360deg) scale(1); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(2deg); }
-  }
-  @keyframes pulseSlow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.85; }
-  }
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* Base html and body tweaks for theme compatibility */
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
 html {
-  background-color: #FFFBF5;
-  transition: background-color 0.35s ease;
-}
-
-html.dark {
-  background-color: #0b0f17;
+  background-color: var(--bg);
+  /* Instrument Serif has one weight; never fake a bold version of it */
+  font-synthesis-weight: none;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #FFFBF5;
-  color: #475569;
-  transition: background-color 0.35s ease, color 0.35s ease;
+  background-color: var(--bg);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.65;
   overflow-x: hidden;
-  font-weight: 500;
-  line-height: 1.8;
 }
 
-.dark body {
-  background-color: #0b0f17;
-  color: #e2e8f0;
-}
-
-/* Default high-contrast colors for headings */
 h1, h2, h3, h4, h5, h6 {
-  color: #0F172A;
-  transition: color 0.35s ease;
-  font-weight: 800;
+  color: var(--text);
 }
 
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-  color: #ffffff;
-}
-
-/* Custom Scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #FFFBF5;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0b0f17;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #C4B5FD 0%, #FBCFE8 100%);
-  border-radius: 9999px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #b39ffc 0%, #faaecf 100%);
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-
-/* Glassmorphism Styles mapping to variables */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-
-.dark .glass-effect {
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-card-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card-hover:hover {
-  transform: translateY(-5px);
-  border-color: rgba(196, 181, 253, 0.6);
-  box-shadow: 0 20px 40px -15px rgba(196, 181, 253, 0.2);
-}
-
-.dark .glass-card-hover:hover {
-  border-color: rgba(196, 181, 253, 0.3);
-  box-shadow: 0 20px 40px -15px rgba(196, 181, 253, 0.1);
-}
-
-/* Lenis scroll styles */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overflow: clip;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Background animated gradient mesh */
-.gradient-bg-mesh {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-  overflow: hidden;
-  pointer-events: none;
-  background-color: #FFFBF5;
-  transition: background-color 0.5s ease;
-}
-
-.dark .gradient-bg-mesh {
-  background-color: #0b0f17;
-}
-
-.mesh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.08;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-.dark .mesh-blob {
-  mix-blend-mode: screen;
-  opacity: 0.05;
-}
-
-.blob-1 {
-  background: radial-gradient(circle, #C4B5FD 0%, rgba(196, 181, 253, 0) 70%);
-  width: 60vw;
-  height: 60vw;
-  top: -20%;
-  left: -20%;
-}
-
-.blob-2 {
-  background: radial-gradient(circle, #FBCFE8 0%, rgba(251, 207, 232, 0) 70%);
-  width: 55vw;
-  height: 55vw;
-  bottom: -20%;
-  right: -20%;
-}
-
-.blob-3 {
-  background: radial-gradient(circle, #BFDBFE 0%, rgba(191, 219, 254, 0) 70%);
-  width: 45vw;
-  height: 45vw;
-  top: 60%;
-  left: 60%;
-}
-
-.blob-4 {
-  background: radial-gradient(circle, #BBF7D0 0%, rgba(187, 247, 208, 0) 70%);
-  width: 40vw;
-  height: 40vw;
-  bottom: 50%;
-  left: -20%;
-}
-
-/* Text highlight typography utilities */
-.text-gradient {
-  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #3B82F6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .text-gradient {
-  background: linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #60A5FA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+a {
+  text-underline-offset: 3px;
 }
 
 ::selection {
-  background: #C4B5FD;
-  color: #0b0f17;
+  background: var(--accent);
+  color: #1C1729;
 }
 
-.dark ::selection {
-  background: #FBCFE8;
-  color: #0b0f17;
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Subtle film grain over everything (static, never animates) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 160px 160px;
+  opacity: var(--grain-opacity);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+  border: 3px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ------------------------------------------------------------------
+   Shared building blocks
+   ------------------------------------------------------------------ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.3rem 0.65rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+/* Legacy classes kept so older sections keep working, now on the tokens */
+.glass-effect {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.glass-card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card-hover:hover {
+  border-color: color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+.text-gradient {
+  color: var(--accent-strong);
+}
+
+/* Hero backdrop: 3 soft blobs (lavender / peach / mint). Static on purpose:
+   the cat is the only thing that moves in view. */
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-blobs span {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.55;
+}
+
+.dark .hero-blobs span { opacity: 0.16; }
+
+.hero-blobs .b1 {
+  width: 46rem; height: 46rem; right: -14rem; top: -16rem;
+  background: radial-gradient(closest-side, var(--accent), transparent);
+}
+
+.hero-blobs .b2 {
+  width: 34rem; height: 34rem; left: -14rem; top: 34%;
+  background: radial-gradient(closest-side, var(--peach), transparent);
+}
+
+.hero-blobs .b3 {
+  width: 30rem; height: 30rem; left: 38%; bottom: -16rem;
+  background: radial-gradient(closest-side, var(--mint), transparent);
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

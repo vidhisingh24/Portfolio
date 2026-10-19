@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
+import { MotionConfig } from 'framer-motion';
 import { Toaster } from 'sonner';
 import { useTheme } from './context/ThemeContext';
 
@@ -24,8 +25,9 @@ import GitStats from './components/GitStats';
 function App() {
   const { theme } = useTheme();
 
-  // Initialize Lenis Smooth Scroll
+  // Lenis smooth scroll, skipped when the visitor prefers reduced motion
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -48,17 +50,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      {/* Background Animated Gradient Mesh */}
-      <div className="gradient-bg-mesh">
-        <div className="mesh-blob blob-1 animate-blob-spin" />
-        <div className="mesh-blob blob-2 animate-blob-spin" style={{ animationDirection: 'reverse', animationDelay: '-5s' }} />
-        <div className="mesh-blob blob-3 animate-blob-spin" style={{ animationDelay: '-10s' }} />
-        <div className="mesh-blob blob-4 animate-blob-spin" style={{ animationDirection: 'reverse', animationDelay: '-15s' }} />
-      </div>
-
+    <MotionConfig reducedMotion="user">
       {/* Main Layout */}
-      <div className="relative min-h-screen text-slate-800 dark:text-slate-200">
+      <div className="relative min-h-screen text-muted">
         <Navbar />
         
         <main>
@@ -99,19 +93,17 @@ function App() {
       <Toaster 
         theme={theme} 
         position="bottom-left" 
-        richColors 
         toastOptions={{
           style: {
-            background: theme === 'dark' ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.8)',
-            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(255, 255, 255, 0.2)',
-            backdropFilter: 'blur(16px)',
-            color: theme === 'dark' ? '#fff' : '#0f172a',
-            borderRadius: '16px',
-            fontFamily: 'Inter, sans-serif'
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            color: 'var(--text)',
+            borderRadius: '14px',
+            fontFamily: 'var(--font-sans)'
           }
         }}
       />
-    </>
+    </MotionConfig>
   );
 }
 
