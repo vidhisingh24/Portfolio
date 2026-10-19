@@ -19,8 +19,9 @@ const Tagline = ({ text }) => {
 
 const NOTE_STYLES = [
   'note note-1 -left-4 top-6 -rotate-6 sm:-left-10',
-  'note note-2 -right-3 top-[44%] rotate-[5deg] sm:-right-8',
-  'note note-3 -bottom-4 left-8 -rotate-3',
+  'note note-2 -right-3 top-[72%] rotate-[5deg] sm:-right-14',
+  'note note-3 -bottom-4 left-4 -rotate-3 sm:left-2',
+  'note note-4 -top-3 -right-2 rotate-[4deg] sm:-right-6',
 ];
 
 const Hero = () => (

@@ -34,7 +34,8 @@ export const profile = {
       alt: 'Portrait of Vidhi Singh',
       size: 460,
     },
-    notes: ['React + Node', 'TypeScript', 'GSoC 2027 prep'],
+    // Sticky notes around the photo (up to 4)
+    notes: ['Women in Tech Global', 'Computer Engineering', 'GSSoC ’26 · SSoC · OSCI', '3★ CodeChef'],
   },
 
   about: {
