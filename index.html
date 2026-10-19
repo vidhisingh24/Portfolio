@@ -18,6 +18,9 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- Hero photo is the largest element on first paint: fetch it early -->
+    <link rel="preload" as="image" href="/images/vidhi.webp" type="image/webp" fetchpriority="high" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vidhi Singh" />
@@ -45,6 +48,7 @@
         "@type": "Person",
         "name": "Vidhi Singh",
         "url": "https://vidhisingh-portfolio.vercel.app/",
+        "image": "https://vidhisingh-portfolio.vercel.app/images/vidhi.png",
         "jobTitle": "Full-stack Developer",
         "description": "Full-stack developer (React, Node, TypeScript) building AI-powered web apps, preparing for GSoC 2027.",
         "email": "mailto:vidhiisingh2403@gmail.com",
@@ -70,10 +74,13 @@
       } catch (e) {}
     </script>
 
-    <!-- Fonts: Instrument Serif (headings), Geist (body), Geist Mono (labels) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <!-- Fonts are self-hosted (see src/index.css); preload the ones used above the fold -->
+    <link rel="preload" href="/fonts/schibsted-grotesk-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-mono-400.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="antialiased">
     <div id="root"></div>
