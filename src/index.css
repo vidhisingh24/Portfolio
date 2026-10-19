@@ -1,5 +1,100 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (SIL OFL 1.1, licenses in public/fonts). Latin subset. */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/geist-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/geist-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/schibsted-grotesk-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/geist-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/geist-mono-500.woff2') format('woff2');
+}
+
+/* Metric-matched fallbacks: while the web fonts load, local fonts are resized to
+   the same width and line height, so the swap doesn't shift the layout (no CLS). */
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Times New Roman'), local('Times'), local('Tinos'), local('Liberation Serif');
+  size-adjust: 84.32%;
+  ascent-override: 117.41%;
+  descent-override: 36.76%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  font-style: italic;
+  src: local('Times New Roman Italic'), local('Times-Italic'), local('Tinos Italic'), local('Liberation Serif Italic');
+  size-adjust: 88.97%;
+  ascent-override: 111.27%;
+  descent-override: 34.84%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial'), local('Helvetica'), local('Arimo'), local('Liberation Sans');
+  size-adjust: 106.76%;
+  ascent-override: 86.18%;
+  descent-override: 20.61%;
+  line-gap-override: 9.37%;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk Fallback';
+  src: local('Arial'), local('Helvetica'), local('Arimo'), local('Liberation Sans');
+  size-adjust: 106.3%;
+  ascent-override: 91.87%;
+  descent-override: 24.25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local('Courier New'), local('Courier'), local('Cousine'), local('Liberation Mono');
+  size-adjust: 100%;
+  ascent-override: 100.5%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
 /* Dark mode follows the `.dark` class on <html> (set before paint in index.html,
    toggled from the navbar). Without this, Tailwind v4 `dark:` follows the OS only. */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -18,6 +113,7 @@
   --text-muted: #57516A;
   --accent: #C4B5FD;          /* lavender: fills, borders, decoration */
   --accent-strong: #5B3FC4;   /* deeper lavender: text + links (AA on --bg) */
+  --accent-mid: #A78BFA;      /* lavender that still reads on cream (the name's period) */
   --accent-soft: #EEE9FF;
   --peach: #FED7C3;
   --mint: #C6F0D6;
@@ -38,6 +134,7 @@
   --text-muted: #B3AAA0;
   --accent: #C4B5FD;
   --accent-strong: #C4B5FD;
+  --accent-mid: #C4B5FD;
   --accent-soft: rgba(196, 181, 253, 0.12);
   --peach: #FDBA9A;
   --mint: #86EFAC;
@@ -61,6 +158,7 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-mid: var(--accent-mid);
   --color-peach: var(--peach);
   --color-ok: var(--ok);
 }
@@ -73,10 +171,11 @@
   --color-mint: #BBF7D0;
   --color-cream: #FFFBF5;
 
-  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', 'Instrument Serif Fallback', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-serif: 'Instrument Serif', 'Instrument Serif Fallback', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-name: 'Schibsted Grotesk', 'Schibsted Grotesk Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* ------------------------------------------------------------------
@@ -193,8 +292,13 @@ body::after {
 /* Hero backdrop: 3 soft blobs (lavender / peach / mint). Static on purpose:
    the cat is the only thing that moves in view. */
 .hero-blobs {
+  /* Fixed height (not inset: 0) so the blobs never move when the hero's
+     height changes, e.g. when web fonts finish loading. */
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70rem;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
@@ -214,14 +318,225 @@ body::after {
 }
 
 .hero-blobs .b2 {
-  width: 34rem; height: 34rem; left: -14rem; top: 34%;
+  width: 34rem; height: 34rem; left: -14rem; top: 22rem;
   background: radial-gradient(closest-side, var(--peach), transparent);
 }
 
 .hero-blobs .b3 {
-  width: 30rem; height: 30rem; left: 38%; bottom: -16rem;
+  width: 30rem; height: 30rem; left: 38%; top: 42rem;
   background: radial-gradient(closest-side, var(--mint), transparent);
 }
+
+/* ------------------------------------------------------------------
+   Buttons, status dot
+   ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary { background: var(--text); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); color: #1C1729; }
+.btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); }
+.btn-ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok) 22%, transparent);
+}
+section[id] { scroll-margin-top: 5.5rem; }
+section[id]:focus { outline: none; }
+
+/* ------------------------------------------------------------------
+   Logo cat mark: ears twitch once on hover
+   ------------------------------------------------------------------ */
+.cat-mark .cm-ear { transform-box: fill-box; }
+.cat-mark .cm-ear-l { transform-origin: 85% 100%; }
+.cat-mark .cm-ear-r { transform-origin: 15% 100%; }
+.group:hover .cat-mark .cm-ear-l { animation: cm-ear-l 0.4s ease-in-out 1; }
+.group:hover .cat-mark .cm-ear-r { animation: cm-ear-r 0.4s ease-in-out 0.05s 1; }
+@keyframes cm-ear-l { 0%, 100% { transform: rotate(0); } 40% { transform: rotate(-18deg); } 70% { transform: rotate(6deg); } }
+@keyframes cm-ear-r { 0%, 100% { transform: rotate(0); } 40% { transform: rotate(18deg); } 70% { transform: rotate(-6deg); } }
+
+/* ------------------------------------------------------------------
+   Hero: name, cat, photo card, sticky notes
+   ------------------------------------------------------------------ */
+.hero-name {
+  /* Grotesk name with tight tracking and a lavender full stop */
+  font-family: var(--font-name);
+  font-weight: 500;
+  font-size: clamp(3.4rem, 13vw, 7.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.063em;
+  color: var(--text);
+}
+.hero-name .dot { color: var(--accent-mid); }
+
+/* ------------------------------------------------------------------
+   "You like cats?" pill + pixel cat (oneko)
+   ------------------------------------------------------------------ */
+.neko {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 32px;
+  height: 32px;
+  background-size: 256px 128px;
+  background-position: -64px 0;
+  image-rendering: pixelated;
+  pointer-events: none;
+  will-change: transform;
+}
+.nekopill {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 14px;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  color: var(--text);
+  font-family: var(--font-name);
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.nekoswitch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--border-strong);
+  transition: background-color 0.2s ease;
+}
+.nekoswitch[aria-checked="true"] { background: var(--text); }
+.nekoswitch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+.nekoswitch[aria-checked="true"] .nekoswitch-thumb { transform: translateX(20px); }
+.dark .nekoswitch[aria-checked="true"] .nekoswitch-thumb { background: var(--bg); }
+
+.photo-card {
+  padding: 0.5rem;
+  border: 2px solid var(--accent);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  box-shadow: 0 22px 44px -22px rgba(28, 23, 41, 0.45);
+  transform: rotate(-3deg);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+figure:hover .photo-card { transform: rotate(0deg); }
+
+.note {
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #1C1729;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 8px 16px -8px rgba(28, 23, 41, 0.4);
+}
+.note-1 { background: #EDE7FF; }
+.note-2 { background: #FFE2D1; }
+.note-3 { background: #D9F5E4; }
+
+/* ------------------------------------------------------------------
+   ⌘K command palette (cmdk)
+   ------------------------------------------------------------------ */
+[cmdk-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: color-mix(in oklab, #000 35%, transparent);
+}
+[cmdk-dialog] {
+  position: fixed;
+  z-index: 91;
+  top: 14vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 2rem));
+}
+.palette {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 1.1rem;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+  color: var(--text);
+}
+.palette-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: 1rem 1.15rem;
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+}
+.palette-input::placeholder { color: var(--text-muted); }
+.palette-list { max-height: min(60vh, 380px); overflow-y: auto; padding: 0.5rem; }
+.palette [cmdk-group-heading] {
+  padding: 0.6rem 0.65rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.65rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.palette-item[data-selected="true"] { background: var(--accent-soft); color: var(--text); }
+.palette-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.palette-hint { margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+.palette-empty { padding: 1rem; font-size: 0.9rem; color: var(--text-muted); }
 
 /* Lenis smooth scroll */
 html.lenis, html.lenis body { height: auto; }
