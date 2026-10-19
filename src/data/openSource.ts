@@ -39,7 +39,7 @@ export const programs: Program[] = [
     name: 'GirlScript Summer of Code',
     short: 'GSSoC ’26',
     role: 'Contributor',
-    period: 'May 2026 – Present',
+    period: 'Apr 2026 – Present',
     summary: 'Working on issues and pull requests in participating open-source projects and collaborating with maintainers on GitHub.',
   },
   {
@@ -47,7 +47,7 @@ export const programs: Program[] = [
     name: 'Social Summer of Code',
     short: 'SSoC Season 5',
     role: 'Contributor',
-    period: 'Apr 2026 – Present',
+    period: 'May 2026 – Present',
     summary: 'Working on issues and pull requests in participating open-source projects and collaborating with maintainers and other contributors.',
   },
   {

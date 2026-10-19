@@ -51,7 +51,7 @@ export const experiences: Experience[] = [
   {
     role: 'Open Source Contributor',
     org: 'GirlScript Summer of Code (GSSoC)',
-    duration: 'May 2026 - Present',
+    duration: 'Apr 2026 - Present',
     points: [
       'Contributed documentation refinements and frontend user interface modifications across public program repositories.',
       'Collaborated alongside developers via GitHub, reviewing commits, resolving merge conflicts, and aligning features.',
@@ -62,7 +62,7 @@ export const experiences: Experience[] = [
     // Name corrected to match LinkedIn (was "Summer of Source Code (SSOC)").
     role: 'Open Source Contributor',
     org: 'Social Summer of Code (SSoC)',
-    duration: 'April 2026 - Present',
+    duration: 'May 2026 - Present',
     points: [
       'Submitted pull requests containing structural styles optimizations and responsive adjustments.',
       'Refined component reuse constraints within open-source React dashboards, improving layout weights.',
