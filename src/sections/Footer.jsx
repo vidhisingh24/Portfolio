@@ -1,83 +1,92 @@
-import React from 'react';
-import { Github, Linkedin, Mail, Heart, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import CatMark from '../components/CatMark';
+import { profile } from '../data/profile';
+import { scrollToId } from '../lib/scroll';
+import { openPalette, shortcutLabel } from '../lib/palette';
+import { useIsClient } from '../lib/useIsClient';
+
+const LINKS = [
+  { id: 'about', label: 'about' },
+  { id: 'work', label: 'work' },
+  { id: 'skills', label: 'skills' },
+  { id: 'journey', label: 'journey' },
+  { id: 'contact', label: 'contact' },
+];
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
+  const isClient = useIsClient();
+  const shortcut = isClient ? shortcutLabel() : 'Ctrl K';
 
-  const handleNavClick = (e, href) => {
+  const go = (e, id) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 85,
-        behavior: 'smooth',
-      });
-    }
+    scrollToId(id);
   };
 
   return (
-    <footer className="relative border-t border-glassBorder dark:border-glassBorderDark bg-white/20 dark:bg-[#080c13] py-12 overflow-hidden">
-
-      <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-between gap-8 md:flex-row text-center md:text-left">
-        
-        {/* Logo and Tagline */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-center md:justify-start gap-2 font-display text-base font-bold tracking-tight text-slate-800 dark:text-white select-none">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-r from-lavender via-softpink to-skyblue flex items-center justify-center text-slate-900 font-black">
-              <Sparkles size={12} />
-            </div>
-            <span>Vidhi Singh</span>
-          </div>
-          <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-sans">
-            Building software systems & exploring AI solutions.
-          </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-12 sm:px-8 md:flex-row md:items-start md:justify-between">
+        <div>
+          <a href="#home" onClick={(e) => go(e, 'top')} className="group inline-flex items-center gap-2 text-ink">
+            <CatMark className="h-6 w-6" />
+            <span className="font-display text-2xl leading-none">{profile.name}</span>
+          </a>
+          <p className="mt-2 text-sm text-muted">{profile.footer.tagline}</p>
+          <button
+            type="button"
+            onClick={openPalette}
+            className="mt-4 inline-flex items-center gap-2 rounded-md font-mono text-xs text-muted hover:text-ink"
+          >
+            <kbd className="rounded border border-line-strong bg-surface px-1.5 py-0.5 font-mono text-[11px] text-ink">{shortcut}</kbd>
+            to jump anywhere
+          </button>
         </div>
 
-        {/* Navigation Shortcut links */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-500 dark:text-slate-400 font-sans">
-          <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="hover:text-slate-800 dark:hover:text-white transition-colors">Home</a>
-          <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-slate-800 dark:hover:text-white transition-colors">About</a>
-          <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className="hover:text-slate-800 dark:hover:text-white transition-colors">Skills</a>
-          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="hover:text-slate-800 dark:hover:text-white transition-colors">Projects</a>
-          <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')} className="hover:text-slate-800 dark:hover:text-white transition-colors">Experience</a>
-          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-slate-800 dark:hover:text-white transition-colors">Contact</a>
-        </div>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm">
+            {LINKS.map((l) => (
+              <li key={l.id}>
+                <a href={`#${l.id}`} onClick={(e) => go(e, l.id)} className="text-muted hover:text-ink">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        {/* Socials */}
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/vidhisingh24"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white border border-glassBorder dark:border-glassBorderDark transition-colors shadow-sm"
-            aria-label="GitHub Profile"
-          >
-            <Github size={16} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/vidhisingh24"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white border border-glassBorder dark:border-glassBorderDark transition-colors shadow-sm"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin size={16} />
-          </a>
-          <a
-            href="mailto:vidhiisingh2403@gmail.com"
-            className="w-9 h-9 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white border border-glassBorder dark:border-glassBorderDark transition-colors shadow-sm"
-            aria-label="Email Address"
-          >
-            <Mail size={16} />
-          </a>
-        </div>
+        <ul className="flex items-center gap-2" aria-label="Elsewhere">
+          {[
+            { href: profile.links.github, label: 'GitHub profile', Icon: Github, external: true },
+            { href: profile.links.linkedin, label: 'LinkedIn profile', Icon: Linkedin, external: true },
+            { href: `mailto:${profile.email}`, label: `Email ${profile.email}`, Icon: Mail, external: false },
+          ].map(({ href, label, Icon, external }) => (
+            <li key={label}>
+              <a
+                href={href}
+                aria-label={label}
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-ink"
+              >
+                <Icon size={17} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Trademark signature divider bar */}
-      <div className="max-w-7xl mx-auto px-6 mt-8 pt-8 border-t border-slate-100 dark:border-slate-900/60 flex flex-col items-center justify-between gap-4 md:flex-row text-[10px] text-slate-400 dark:text-slate-500">
-        <p>&copy; {currentYear} Vidhi Singh. All rights reserved.</p>
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 border-t border-line px-5 py-6 text-xs text-muted sm:flex-row sm:justify-between sm:px-8">
+        <p>
+          &copy; {year} {profile.name}. All rights reserved.
+        </p>
         <p className="flex items-center gap-1">
-          Designed & Developed with <Heart size={10} className="text-red-400 fill-red-400 animate-pulse" /> by Vidhi Singh
+          Designed &amp; Developed with
+          <svg viewBox="0 0 24 24" className="h-3 w-3 text-accent-strong" aria-label="love" role="img">
+            <path
+              fill="currentColor"
+              d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 5 6.4 5c2.1 0 3.6 1.2 4.4 2.5h2.4C14 6.2 15.5 5 17.6 5 21 5 23.1 8.5 21.6 11.8 19.5 16.4 12 21 12 21z"
+            />
+          </svg>
+          by {profile.name}
         </p>
       </div>
     </footer>
