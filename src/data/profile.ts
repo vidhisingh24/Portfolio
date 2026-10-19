@@ -42,7 +42,7 @@ export const profile = {
     title: 'Transforming Curiosity into *Code*',
     heading: 'Who is Vidhi Singh?',
     paragraphs: [
-      'I am an ambitious 1st Year Computer Engineering student dedicated to mastering the art and science of software systems. Rather than waiting for senior years, I actively engage in real-world application design, open-source program contributions, and practical machine learning pipelines.',
+      'I am an ambitious Computer Engineering student dedicated to mastering the art and science of software systems. Rather than waiting for senior years, I actively engage in real-world application design, open-source program contributions, and practical machine learning pipelines.',
       'My core mission is to construct applications that solve tangible human challenges, combining clean modular architectures with visually stunning user experiences. I thrive at the intersection of algorithmic rigor, aesthetic frontends, and intelligent machine learning backends.',
     ],
     strengths: [

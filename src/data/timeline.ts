@@ -39,6 +39,16 @@ export const journeySection = {
 
 export const experiences: Experience[] = [
   {
+    // Same wording as the OSCI entry on LinkedIn.
+    role: 'Open Source Contributor',
+    org: 'Open Source Connect India (OSCI)',
+    duration: 'Aug 2026 - Present',
+    points: [
+      'Working on issues and pull requests in participating open-source projects.',
+      'Collaborating with maintainers on reviews and changes.',
+    ],
+  },
+  {
     role: 'Open Source Contributor',
     org: 'GirlScript Summer of Code (GSSoC)',
     duration: 'May 2026 - Present',
