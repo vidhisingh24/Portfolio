@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 /**
  * Fade-up on scroll (~0.4s). Renders a plain element when the visitor
@@ -17,7 +16,7 @@ const Reveal = ({ as = 'div', delay = 0, className = '', children, ...rest }) =>
     );
   }
 
-  const MotionTag = motion[as] ?? motion.div;
+  const MotionTag = m[as] ?? m.div;
   return (
     <MotionTag
       className={className}
