@@ -97,9 +97,6 @@ const projects = [
 const Projects = () => {
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-[20%] right-[-25%] w-[400px] h-[400px] bg-lavender/5 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-[20%] left-[-25%] w-[400px] h-[400px] bg-softpink/5 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
 
@@ -130,7 +127,6 @@ const Projects = () => {
                 noTilt
               >
                 {/* Background glow shape inside card */}
-                <div className={`absolute top-[-20%] right-[-25%] w-[350px] h-[350px] bg-gradient-to-br ${proj.gradient} rounded-full blur-[70px] -z-10 pointer-events-none`} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 

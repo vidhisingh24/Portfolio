@@ -32,9 +32,6 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute top-[30%] left-[-25%] w-[400px] h-[400px] bg-softpink/5 rounded-full blur-[100px] -z-10 animate-pulse-slow" />
-      <div className="absolute bottom-[10%] right-[-25%] w-[350px] h-[350px] bg-lavender/5 rounded-full blur-[90px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
 

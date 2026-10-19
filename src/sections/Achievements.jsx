@@ -45,8 +45,6 @@ const achievements = [
 const Achievements = () => {
   return (
     <section id="achievements" className="py-24 relative overflow-hidden">
-      {/* Background Blob */}
-      <div className="absolute top-[30%] left-[-25%] w-[300px] h-[300px] bg-softpink/5 rounded-full blur-[80px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
 

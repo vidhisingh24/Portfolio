@@ -34,8 +34,6 @@ const strengths = [
 const About = () => {
   return (
     <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-[30%] left-[-25%] w-[300px] h-[300px] bg-skyblue/5 rounded-full blur-[80px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Heading */}

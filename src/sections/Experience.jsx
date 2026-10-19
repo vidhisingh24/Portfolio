@@ -64,8 +64,6 @@ const experiences = [
 const Experience = () => {
   return (
     <section id="experience" className="py-24 relative overflow-hidden bg-white/20 dark:bg-transparent">
-      {/* Background Shadows */}
-      <div className="absolute top-[20%] right-[-25%] w-[350px] h-[350px] bg-skyblue/5 rounded-full blur-[90px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
 

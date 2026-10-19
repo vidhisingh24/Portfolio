@@ -17,8 +17,6 @@ const Footer = () => {
 
   return (
     <footer className="relative border-t border-glassBorder dark:border-glassBorderDark bg-white/20 dark:bg-[#080c13] py-12 overflow-hidden">
-      {/* Subtle glow blob */}
-      <div className="absolute bottom-0 left-[45%] w-[200px] h-[200px] bg-purple-500/5 rounded-full blur-[80px] -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-between gap-8 md:flex-row text-center md:text-left">
         

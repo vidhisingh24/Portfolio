@@ -61,8 +61,6 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-white/20 dark:bg-transparent">
-      {/* Glow Blob */}
-      <div className="absolute top-[40%] right-[-25%] w-[350px] h-[350px] bg-mint/5 rounded-full blur-[90px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
 

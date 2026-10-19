@@ -145,10 +145,13 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden">
-      {/* Background Blobs inside Hero (Local Context) */}
-      <div className="absolute top-[20%] right-[-25%] w-[350px] h-[350px] bg-softpink/5 rounded-full blur-[100px] animate-pulse-slow -z-10" />
-      <div className="absolute bottom-[10%] left-[-25%] w-[400px] h-[400px] bg-lavender/5 rounded-full blur-[120px] animate-pulse-slow -z-10" />
+    <section id="home" className="min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden isolate">
+      {/* Soft lavender / peach / mint blobs, behind the hero only */}
+      <div className="hero-blobs" aria-hidden="true">
+        <span className="b1" />
+        <span className="b2" />
+        <span className="b3" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
         {/* Left Column - Copy & CTA */}

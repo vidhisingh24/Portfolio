@@ -45,8 +45,6 @@ const steps = [
 const LearningJourney = () => {
   return (
     <section id="learning-journey" className="py-24 relative overflow-hidden bg-white/10 dark:bg-transparent">
-      {/* Background blobs */}
-      <div className="absolute top-[20%] left-[-25%] w-[400px] h-[400px] bg-lavender/5 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
 

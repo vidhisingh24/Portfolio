@@ -33,8 +33,6 @@ const goals = [
 const CurrentInterestsFuture = () => {
   return (
     <section className="py-24 relative overflow-hidden bg-white/20 dark:bg-transparent">
-      {/* Background blobs */}
-      <div className="absolute top-[30%] right-[-25%] w-[350px] h-[350px] bg-mint/5 rounded-full blur-[90px] -z-10 animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6">
 
