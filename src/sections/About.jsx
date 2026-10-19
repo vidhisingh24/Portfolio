@@ -1,121 +1,60 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, Compass, BookOpen, Target, Calendar } from 'lucide-react';
-import GlassCard from '../components/GlassCard';
+import Reveal from '../components/Reveal';
+import SectionHeader from '../components/SectionHeader';
+import Achievements from './Achievements';
+import { profile } from '../data/profile';
+import { isTodo } from '../data/todo';
 
-const milestones = [
-  {
-    year: '2025 - Present',
-    title: 'Data Structures & Core Engineering',
-    institution: 'Logic & Systems Foundations',
-    desc: 'Mastered memory pointer architectures and complex algorithm structures in C++. Hand-implemented binary trees, search heaps, sorting optimizations, and space complexity metrics.',
-  },
-  {
-    year: '2026 - Present',
-    title: 'Open Source Contributor',
-    institution: 'Community Repositories',
-    desc: 'Contributed interface styling layouts and component validation features during GSSoC and SSOC programs. Mastered Git branching protocols and collaborative peer reviews.',
-  },
-  {
-    year: '2026',
-    title: 'Full-Stack & Machine Learning Models',
-    institution: 'Intelligent Web Applications',
-    desc: 'Constructed custom responsive platforms using React/Vite, Tailwind, and Node.js. Developed predictive models using Scikit-Learn and statistical calculations in Pandas/NumPy.',
-  }
-];
+const { about } = profile;
 
-const strengths = [
-  { title: 'Algorithmic Logic', desc: 'Active solver of C++ DSA problems, optimizing spatial and time complexities.', icon: <Award className="text-purple-400" size={20} /> },
-  { title: 'Full Stack Adaptability', desc: 'Rapidly picking up React, Node.js, and databases to build complete responsive apps.', icon: <Compass className="text-pink-400" size={20} /> },
-  { title: 'AI/ML Focus', desc: 'Applying NumPy, Pandas, Scikit-learn, and neural theory concepts to raw data.', icon: <Target className="text-blue-400" size={20} /> },
-  { title: 'Open Source Spirit', desc: 'Collaborating on git repositories, reviewing pull requests, and building community.', icon: <BookOpen className="text-green-400" size={20} /> }
-];
+const About = () => (
+  <section id="about" aria-labelledby="about-title" className="py-20 sm:py-28">
+    <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <SectionHeader id="about-title" eyebrow={about.eyebrow} title={about.title} />
 
-const About = () => {
-  return (
-    <section id="about" className="py-24 relative overflow-hidden">
+      <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+        <Reveal>
+          <h3 className="font-display text-3xl text-ink">{about.heading}</h3>
+          <div className="mt-4 space-y-4 text-[1.02rem] leading-relaxed text-muted">
+            {about.paragraphs.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+            <p>{profile.intro}</p>
+          </div>
+          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Roles">
+            {profile.roles.map((r) => (
+              <li key={r} className="chip">
+                {r}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">About Me</span>
-          <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
-            Transforming Curiosity into Code
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-lavender via-softpink to-skyblue rounded-full" />
-        </div>
-
-        {/* Two-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-          {/* Left Side: Bio and Core Values */}
-          <div className="lg:col-span-6 space-y-6">
-            <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white">
-              Who is Vidhi Singh?
-            </h3>
-
-            <p className="text-sm md:text-base text-slate-900 dark:text-slate-500 leading-relaxed font-sans font-medium">
-              I am an ambitious 1st Year Computer Engineering student dedicated to mastering the art and science of software systems. Rather than waiting for senior years, I actively engage in real-world application design, open-source program contributions, and practical machine learning pipelines.
-            </p>
-
-            <p className="text-sm md:text-base text-slate-900 dark:text-slate-500 leading-relaxed font-sans font-medium">
-              My core mission is to construct applications that solve tangible human challenges, combining clean modular architectures with visually stunning user experiences. I thrive at the intersection of algorithmic rigor, aesthetic frontends, and intelligent machine learning backends.
-            </p>
-
-            {/* Core Values / Strengths Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              {strengths.map((str, idx) => (
-                <div key={idx} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-2xl glass-effect border border-glassBorder dark:border-glassBorderDark flex items-center justify-center shrink-0 shadow-sm">
-                    {str.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-800 dark:text-white font-sans">{str.title}</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed font-sans font-medium">{str.desc}</p>
-                  </div>
-                </div>
+        <Reveal delay={0.08} className="space-y-6">
+          <ul className="grid grid-cols-2 gap-3" aria-label="Quick facts">
+            {profile.quickStats
+              .filter((s) => !isTodo(s.value))
+              .map((s) => (
+                <li key={s.label} className="card p-4">
+                  <p className="font-display text-3xl leading-none text-ink">{s.value}</p>
+                  <p className="mt-2 font-mono text-xs text-muted">{s.label}</p>
+                </li>
               ))}
-            </div>
-          </div>
+          </ul>
 
-          {/* Right Side: Tech Journey Timeline */}
-          <div className="lg:col-span-6">
-            <GlassCard className="border border-glassBorder dark:border-glassBorderDark p-8 shadow-sm" noTilt>
-              <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                <Calendar size={20} className="text-purple-400 animate-pulse" /> Tech Journey
-              </h3>
-
-              <div className="relative border-l-2 border-solid border-slate-400 dark:border-slate-600 ml-4 space-y-8 py-2">
-                {milestones.map((ms, idx) => (
-                  <div key={idx} className="relative pl-8">
-                    {/* Circle Node */}
-                    <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-700 dark:bg-slate-300 border-2 border-slate-500 dark:border-slate-500 shadow-sm" />
-
-                    <span className="text-[10px] font-bold text-purple-700 dark:text-lavender bg-purple-50 dark:bg-slate-800 px-2.5 py-1 rounded-full border border-purple-150 dark:border-slate-800 font-sans">
-                      {ms.year}
-                    </span>
-
-                    <h4 className="text-sm font-extrabold text-slate-900 dark:text-white font-display mt-2">
-                      {ms.title}
-                    </h4>
-
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5 font-sans">
-                      {ms.institution}
-                    </p>
-
-                    <p className="text-xs text-slate-900 dark:text-slate-500 mt-2 leading-relaxed font-sans font-medium">
-                      {ms.desc}
-                    </p>
-                  </div>
-                ))}
+          <dl className="card divide-y divide-line">
+            {about.strengths.map((s) => (
+              <div key={s.title} className="p-4">
+                <dt className="font-medium text-ink">{s.title}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-muted">{s.desc}</dd>
               </div>
-            </GlassCard>
-          </div>
-
-        </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
-    </section>
-  );
-};
+
+      <Achievements />
+    </div>
+  </section>
+);
 
 export default About;
