@@ -1,197 +1,189 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, X, FileText, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import CustomButton from '../components/CustomButton';
+import CatMark from '../components/CatMark';
+import { profile } from '../data/profile';
+import { scrollToId } from '../lib/scroll';
+import { openPalette, shortcutLabel } from '../lib/palette';
+import { useIsClient } from '../lib/useIsClient';
 
-const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'AI Journey', href: '#ai-journey' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'GitHub', href: '#github' },
-  { name: 'Contact', href: '#contact' },
+const navLinks = [
+  { id: 'work', label: 'work' },
+  { id: 'skills', label: 'skills' },
+  { id: 'journey', label: 'journey' },
+  { id: 'contact', label: 'contact' },
 ];
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
-  const [activeSection, setActiveSection] = useState('Home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState('');
+  const isClient = useIsClient();
+  const shortcut = isClient ? shortcutLabel() : 'Ctrl K';
 
-  // Track scrolling to toggle thin/thick navbar styling
+  // Shrink a little once the page scrolls
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      // Check which section is in view
-      const scrollPosition = window.scrollY + 120;
-      for (const item of navItems) {
-        const el = document.querySelector(item.href);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(item.name);
-          }
-        }
-      }
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        setScrolled(window.scrollY > 16);
+      });
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
-  const handleNavClick = (e, href, name) => {
-    e.preventDefault();
-    setActiveSection(name);
-    setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 85,
-        behavior: 'smooth',
+  // Highlight the section in view. Sections below the hero load as a separate
+  // chunk, so (re)attach when they arrive.
+  useEffect(() => {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Back in the hero: no nav item is "current"
+          if (entry.isIntersecting) setActive(entry.target.id === 'home' ? '' : entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    const observeSections = () => {
+      ['home', ...navLinks.map((l) => l.id)].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) spy.observe(el);
       });
-    }
+    };
+    observeSections();
+    window.addEventListener('sections:ready', observeSections);
+
+    return () => {
+      window.removeEventListener('sections:ready', observeSections);
+      spy.disconnect();
+    };
+  }, []);
+
+  // Close the mobile menu with Escape
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setMenuOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
+
+  const go = (e, id) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    scrollToId(id);
   };
 
+  const themeLabel = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+
   return (
-    <>
-      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${scrolled
-        ? 'py-3.5 bg-white/60 dark:bg-slate-950/60 shadow-lg border-b border-glassBorder dark:border-glassBorderDark backdrop-blur-md'
-        : 'py-6 bg-transparent'
-        }`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo / Brand Name */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home', 'Home')}
-            className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-slate-800 dark:text-white cursor-pointer select-none group"
-          >
-            <div className="w-9 h-9 rounded-full bg-gradient-to-r from-lavender via-softpink to-skyblue flex items-center justify-center text-slate-900 font-black shadow-md shadow-purple-500/10 group-hover:scale-105 transition-transform">
-              <Sparkles size={16} />
-            </div>
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:opacity-85 transition-opacity">
-              Vidhi.dev
-            </span>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-5">
+      <nav
+        aria-label="Main"
+        className={`mx-auto max-w-6xl rounded-full border border-line bg-bg/75 backdrop-blur-md transition-[padding,margin,box-shadow] duration-300 ${
+          scrolled ? 'mt-2 py-1.5 shadow-[var(--shadow)]' : 'mt-4 py-2.5'
+        }`}
+      >
+        <div className="flex items-center justify-between gap-3 pl-4 pr-2 sm:pl-5">
+          <a href="#home" onClick={(e) => go(e, 'top')} className="group flex items-center gap-2 text-ink" aria-label="vidhi, back to top">
+            <CatMark className={`transition-[width,height] duration-300 ${scrolled ? 'h-6 w-6' : 'h-7 w-7'}`} />
+            <span className="font-display text-[1.65rem] italic leading-none">{profile.shortName}</span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-1.5 glass-effect px-4 py-1.5 rounded-full border border-glassBorder dark:border-glassBorderDark">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href, item.name)}
-                className={`relative px-4 py-2 text-xs font-semibold tracking-wide transition-colors font-sans duration-200 cursor-pointer ${activeSection === item.name
-                  ? 'text-slate-900 dark:text-white'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-                  }`}
-              >
-                {activeSection === item.name && (
-                  <motion.span
-                    layoutId="activeNavIndicator"
-                    className="absolute inset-0 bg-white/70 dark:bg-slate-800/80 rounded-full -z-10 shadow-sm border border-black/5 dark:border-white/5"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
+          <ul className="hidden items-center font-mono text-[13px] md:flex">
+            {navLinks.map((link, i) => (
+              <li key={link.id} className="flex items-center">
+                {i > 0 && (
+                  <span aria-hidden="true" className="px-0.5 text-muted/60">
+                    ·
+                  </span>
                 )}
-                {item.name}
-              </a>
+                <a
+                  href={`#${link.id}`}
+                  onClick={(e) => go(e, link.id)}
+                  aria-current={active === link.id ? 'true' : undefined}
+                  className="rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink aria-[current=true]:bg-accent-soft aria-[current=true]:text-accent-strong"
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          {/* Action Items */}
-          <div className="hidden lg:flex items-center gap-4">
-            {/* Theme Toggle */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="hidden items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-ink sm:inline-flex">
+              <span className="status-dot" aria-hidden="true" />
+              {profile.availability}
+            </span>
+
             <button
-              onClick={toggleTheme}
-              className="w-10 h-10 rounded-full bg-white/50 border border-glassBorder dark:bg-slate-800/40 dark:border-glassBorderDark flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:scale-105 transition-all shadow-sm cursor-pointer"
-              aria-label="Toggle theme"
+              type="button"
+              onClick={openPalette}
+              aria-label={`Open command menu (${shortcut})`}
+              title={`Command menu (${shortcut})`}
+              className="hidden h-9 items-center rounded-full border border-line px-2.5 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-ink lg:inline-flex"
             >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {shortcut}
             </button>
 
-            {/* Resume Button */}
-            <CustomButton
-              variant="primary"
-              className="!py-2.5 !px-5 text-xs font-semibold"
-              href="/Vidhi_Singh_Resume.pdf"
-              target="_blank"
-            >
-              <FileText size={14} /> Resume
-            </CustomButton>
-          </div>
-
-          {/* Mobile Actions Container (Hamburger & Theme Toggle) */}
-          <div className="flex items-center gap-3 lg:hidden">
-            {/* Mobile Theme Toggle */}
             <button
+              type="button"
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-full bg-white/60 dark:bg-slate-800/40 border border-glassBorder dark:border-glassBorderDark flex items-center justify-center text-slate-600 dark:text-slate-300 cursor-pointer"
+              aria-label={themeLabel}
+              title={themeLabel}
+              className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-ink"
             >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'dark' ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
             </button>
 
-            {/* Hamburger Menu Toggle */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 rounded-full bg-white/60 dark:bg-slate-800/40 border border-glassBorder dark:border-glassBorderDark flex items-center justify-center text-slate-600 dark:text-slate-300 cursor-pointer"
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-ink md:hidden"
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {menuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
           </div>
         </div>
-      </nav >
+      </nav>
 
-      {/* Mobile Menu Panel */}
-      < AnimatePresence >
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed top-[70px] left-0 w-full z-30 lg:hidden glass-effect border-b border-glassBorder dark:border-glassBorderDark shadow-xl overflow-hidden"
-          >
-            <div className="px-6 py-6 flex flex-col gap-3">
-              {navItems.map((item) => (
+      {menuOpen && (
+        <div id="mobile-menu" className="card mx-auto mt-2 max-w-6xl p-3 md:hidden">
+          <ul className="font-mono text-sm">
+            {navLinks.map((link) => (
+              <li key={link.id}>
                 <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href, item.name)}
-                  className={`px-4 py-3 rounded-2xl text-sm font-semibold tracking-wide font-sans transition-colors ${activeSection === item.name
-                    ? 'bg-gradient-to-r from-lavender/30 to-softpink/30 text-purple-700 dark:text-lavender'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-800/40'
-                    }`}
+                  href={`#${link.id}`}
+                  onClick={(e) => go(e, link.id)}
+                  className="block rounded-xl px-3 py-2.5 text-ink hover:bg-surface-2"
                 >
-                  {item.name}
+                  {link.label}
                 </a>
-              ))}
-
-              <div className="h-px bg-slate-200 dark:bg-slate-800 my-2" />
-
-              <div className="flex items-center justify-between gap-4 px-2">
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">Recruiter Actions</span>
-                <a
-                  href="#resume-placeholder"
-                  download="Vidhi_Singh_Resume.pdf"
-                  className="flex items-center gap-2 text-xs font-semibold bg-gradient-to-r from-lavender via-softpink to-skyblue text-slate-800 px-5 py-2.5 rounded-full shadow-md"
-                >
-                  <FileText size={14} /> Download Resume
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )
-        }
-      </AnimatePresence >
-    </>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-2 flex items-center justify-between gap-3 border-t border-line px-3 pt-3">
+            <span className="inline-flex items-center gap-2 font-mono text-xs text-ink">
+              <span className="status-dot" aria-hidden="true" />
+              {profile.availability}
+            </span>
+            <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-accent-strong underline">
+              Resume ↗
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 

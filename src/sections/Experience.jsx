@@ -1,140 +1,70 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Briefcase, GitBranch, Code, ShieldCheck, Zap } from 'lucide-react';
-import GlassCard from '../components/GlassCard';
+import Reveal from '../components/Reveal';
+import SectionHeader from '../components/SectionHeader';
+import LearningJourney from './LearningJourney';
+import AIJourney from './AIJourney';
+import { experiences, journeySection, milestones } from '../data/timeline';
+import { isTodo } from '../data/todo';
 
-const experiences = [
-  {
-    role: 'Open Source Contributor',
-    org: 'GirlScript Summer of Code (GSSoC)',
-    duration: 'May 2026 - Present',
-    icon: <GitBranch className="text-purple-500" size={18} />,
-    points: [
-      'Contributed documentation refinements and frontend user interface modifications across public program repositories.',
-      'Collaborated alongside developers via GitHub, reviewing commits, resolving merge conflicts, and aligning features.',
-      'Debugged logic errors within JavaScript components, refining responsiveness controls.'
-    ]
-  },
-  {
-    role: 'Open Source Contributor',
-    org: 'Summer of Source Code (SSOC)',
-    duration: 'April 2026 - Present',
-    icon: <Code className="text-pink-500" size={18} />,
-    points: [
-      'Submitted pull requests containing structural styles optimizations and responsive adjustments.',
-      'Refined component reuse constraints within open-source React dashboards, improving layout weights.',
-      'Maintained active communication lines inside Discord channels to align project scopes.'
-    ]
-  },
-  {
-    role: 'Open Source Contributor',
-    org: 'Global Repositories (Independent)',
-    duration: '2025 - Present',
-    icon: <Briefcase className="text-blue-500" size={18} />,
-    points: [
-      'Forked and optimized coding scripts inside utility projects, optimizing functions efficiency.',
-      'Reported runtime errors and created documentation updates in community packages.',
-      'Utilized git branching best practices to ensure clear version histories.'
-    ]
-  },
-  {
-    role: 'Student Developer',
-    org: 'Computer Engineering Department',
-    duration: '2025 - Present',
-    icon: <ShieldCheck className="text-green-500" size={18} />,
-    points: [
-      'Constructed course laboratory scripts solving core array searching/sorting algorithms in C++.',
-      'Designed presentation slide systems showing how object-oriented patterns solve real-world problems.',
-      'Collaborated inside group assignments to manage code integration and testing scopes.'
-    ]
-  },
-  {
-    role: 'Independent Project Developer',
-    org: 'Self-Directed Engineering Projects',
-    duration: '2025 - Present',
-    icon: <Zap className="text-yellow-600" size={18} />,
-    points: [
-      'Designed and coded the MedEase AI healthcare portal and the ZeroWasteLink distribution hub.',
-      'Analyzed package specifications and resolved compatibility mismatches during React updates.',
-      'Hosted deployments on cloud hosting interfaces, configuring domain redirects.'
-    ]
-  }
-];
+/** The "journey" section: experience timeline, tech journey, learning path and AI/ML path. */
+const Experience = () => (
+  <section id="journey" aria-labelledby="journey-title" className="py-20 sm:py-28">
+    <span id="experience" aria-hidden="true" />
+    <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <SectionHeader id="journey-title" {...journeySection} />
 
-const Experience = () => {
-  return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-white/20 dark:bg-transparent">
-      {/* Background Shadows */}
-      <div className="absolute top-[20%] right-[-25%] w-[350px] h-[350px] bg-skyblue/5 rounded-full blur-[90px] -z-10" />
-
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-dark lavender">Background</span>
-          <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-950 dark:text-white">
-            Practical Experience
-          </h2>
-          <p className="text-slate-900 dark:text-slate-500 max-w-xl text-xs md:text-sm font-sans font-medium">
-            How I contribute to community programs and engineer software products.
-          </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-lavender via-softpink to-skyblue rounded-full animate-pulse-slow" />
-        </div>
-
-        {/* Experience Timeline Grid */}
-        <div className="space-y-6 max-w-4xl mx-auto">
-          {experiences.map((exp, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-            >
-              <GlassCard
-                className="border border-glassBorder dark:border-glassBorderDark p-6 hover:border-purple-200 dark:hover:border-slate-800 transition-colors shadow-xs"
-                noTilt
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-
-                  {/* Left Column: Role Details */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-2xl bg-white dark:bg-slate-800 flex items-center justify-center shadow-xs shrink-0 border border-slate-100 dark:border-slate-800">
-                      {exp.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-extrabold text-slate-900 dark:text-white font-display">
-                        {exp.role}
-                      </h3>
-                      <p className="text-xs font-bold text-slate-900 dark:text-slate-500 font-sans">
-                        {exp.org}
-                      </p>
-                    </div>
+      <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr]">
+        <div>
+          <h3 className="sr-only">Experience</h3>
+          <ol className="relative space-y-6 border-l border-line-strong pl-6 sm:pl-8">
+            {experiences.map((exp, i) => (
+              <Reveal as="li" key={`${exp.org}-${exp.duration}`} delay={i * 0.05} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-[31px] top-7 h-3 w-3 rounded-full border-2 border-accent-strong bg-bg sm:-left-[39px]"
+                />
+                <div className="card p-5 sm:p-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h4 className="text-lg font-medium text-ink">{exp.role}</h4>
+                    <p className="font-mono text-xs text-muted">{exp.duration}</p>
                   </div>
-
-                  {/* Right Column: Time duration tag */}
-                  <span className="text-[10px] font-bold text-purple-700 dark:text-lavender bg-purple-50 dark:bg-slate-800/60 px-3.5 py-1.5 rounded-full border border-purple-100 dark:border-slate-850 font-sans w-fit">
-                    {exp.duration}
-                  </span>
+                  <p className="mt-0.5 text-sm text-accent-strong">{exp.org}</p>
+                  <ul className="mt-4 space-y-2">
+                    {exp.points
+                      .filter((p) => !isTodo(p))
+                      .map((p) => (
+                        <li key={p} className="flex gap-2.5 text-sm leading-relaxed text-muted">
+                          <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted" />
+                          {p}
+                        </li>
+                      ))}
+                  </ul>
                 </div>
-
-                {/* Point Description List */}
-                <ul className="mt-5 space-y-2.5 ml-1 pt-4 border-t border-dashed border-slate-200 dark:border-slate-800">
-                  {exp.points.map((pt, pIdx) => (
-                    <li key={pIdx} className="text-xs text-slate-700 dark:text-slate-500 leading-relaxed flex items-start gap-2 font-sans font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-700 dark:bg-slate-300 mt-1.5 shrink-0" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-            </motion.div>
-          ))}
+              </Reveal>
+            ))}
+          </ol>
         </div>
 
+        <Reveal as="aside" aria-labelledby="tech-journey-title" className="lg:pt-1">
+          <h3 id="tech-journey-title" className="font-display text-3xl text-ink">
+            Tech Journey
+          </h3>
+          <ol className="mt-5 space-y-5">
+            {milestones.map((m) => (
+              <li key={m.title} className="border-t border-line pt-4">
+                <p className="font-mono text-xs text-accent-strong">{m.year}</p>
+                <h4 className="mt-1 font-medium text-ink">{m.title}</h4>
+                <p className="text-sm text-muted">{m.institution}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{m.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </div>
-    </section>
-  );
-};
+
+      <LearningJourney />
+      <AIJourney />
+    </div>
+  </section>
+);
 
 export default Experience;
