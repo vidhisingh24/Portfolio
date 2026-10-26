@@ -1,9 +1,6 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { GitHubIcon } from '../Icons';
 import { projects } from '../../data/projects';
-import { OPEN_CASE } from './caseEvents';
-
-const CaseStudy = lazy(() => import('./CaseStudy'));
 
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
@@ -28,17 +25,16 @@ const ProjectCard = ({ project, index, onOpen, register }) => {
               height={shot.height}
               alt={shot.alt}
               loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority="auto"
               decoding="async"
             />
           </div>
         </div>
         <div className="pcard__meta">
-          <h2 className="pcard__title" id={`pcard-${project.id}`}>
-            <button type="button" className="pcard__open" aria-haspopup="dialog" onClick={() => onOpen(project.id)}>
+          <h3 className="pcard__title" id={`pcard-${project.id}`}>
+            <button type="button" className="pcard__open" aria-haspopup="dialog" data-case={project.id} onClick={() => onOpen(project.id)}>
               {project.title}
             </button>
-          </h2>
+          </h3>
           <p className="pcard__desc">{project.description}</p>
           <div className="pcard__links">
             <span className="pcard__cta" aria-hidden="true">
@@ -59,11 +55,9 @@ const ProjectCard = ({ project, index, onOpen, register }) => {
   );
 };
 
-/** Left column: one big card per project, screenshots slide inside as you scroll. */
-const Work = () => {
+/** The project list: one big card per project, screenshots slide inside as you scroll. */
+const Work = ({ onOpen }) => {
   const cards = useRef([]);
-  const [openId, setOpenId] = useState(null);
-  const returnTo = useRef(null);
 
   const register = (i, el) => {
     cards.current[i] = el;
@@ -71,8 +65,7 @@ const Work = () => {
 
   // Scroll-linked screenshot strip (skipped under reduced motion)
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reduce.matches) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const inView = new Set();
     let frame = 0;
 
@@ -111,39 +104,12 @@ const Work = () => {
     };
   }, []);
 
-  // Open a case study from elsewhere (about pop-up, ⌘K palette)
-  useEffect(() => {
-    const onOpen = (e) => {
-      const i = projects.findIndex((p) => p.id === e.detail);
-      if (i < 0) return;
-      returnTo.current = cards.current[i]?.querySelector('.pcard__open') ?? null;
-      setOpenId(e.detail);
-    };
-    window.addEventListener(OPEN_CASE, onOpen);
-    return () => window.removeEventListener(OPEN_CASE, onOpen);
-  }, []);
-
-  const open = (id) => {
-    returnTo.current = document.activeElement;
-    setOpenId(id);
-  };
-
-  const close = () => {
-    setOpenId(null);
-    returnTo.current?.focus?.();
-  };
-
   return (
-    <section id="work" className="work" aria-label="Selected work">
+    <>
       {projects.map((p, i) => (
-        <ProjectCard key={p.id} project={p} index={i} onOpen={open} register={register} />
+        <ProjectCard key={p.id} project={p} index={i} onOpen={onOpen} register={register} />
       ))}
-      {openId && (
-        <Suspense fallback={null}>
-          <CaseStudy project={projects.find((p) => p.id === openId)} onClose={close} />
-        </Suspense>
-      )}
-    </section>
+    </>
   );
 };
 

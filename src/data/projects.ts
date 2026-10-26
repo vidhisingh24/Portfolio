@@ -24,8 +24,8 @@ export interface Project {
   status?: string;
   /** Card look on the work column: background, text colour and a soft glow */
   card: { bg: string; fg: string; glow: string };
-  /** Tall strip of screenshots that slides inside the card as you scroll */
-  shot: { src: string; srcSm: string; width: number; height: number; alt: string };
+  /** Tall strip of screenshots that slides inside the card as you scroll; thumb = its top, for the Projects panel */
+  shot: { src: string; srcSm: string; thumb: string; width: number; height: number; alt: string };
 }
 
 export const workSection = {
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     // Previously labelled "Active System" on the site. Confirm before showing.
     status: 'TODO: Active System',
     card: { bg: '#221A45', fg: '#F4F1FB', glow: '#2DD4BF' },
-    shot: { src: '/projects/collabspace.webp', srcSm: '/projects/collabspace-sm.webp', width: 1560, height: 3169, alt: 'CollabSpace screens: documents list, system-architecture whiteboard and sprint kanban board' },
+    shot: { src: '/projects/collabspace.webp', srcSm: '/projects/collabspace-sm.webp', thumb: '/projects/collabspace-thumb.webp', width: 1560, height: 3169, alt: 'CollabSpace screens: documents list, system-architecture whiteboard and sprint kanban board' },
   },
   {
     id: 'zerowaste-link',
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     // Previously labelled "Active System" on the site. Confirm before showing.
     status: 'TODO: Active System',
     card: { bg: '#E6F4EC', fg: '#123C28', glow: '#A7F3D0' },
-    shot: { src: '/projects/zerowaste.webp', srcSm: '/projects/zerowaste-sm.webp', width: 1560, height: 3169, alt: 'ZeroWaste Link screens: landing page, live impact map and donate page' },
+    shot: { src: '/projects/zerowaste.webp', srcSm: '/projects/zerowaste-sm.webp', thumb: '/projects/zerowaste-thumb.webp', width: 1560, height: 3169, alt: 'ZeroWaste Link screens: landing page, live impact map and donate page' },
   },
   {
     id: 'payslip',
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     // Previously labelled "Active System" on the site. Confirm before showing.
     status: 'TODO: Active System',
     card: { bg: '#15121F', fg: '#F4F1FB', glow: '#818CF8' },
-    shot: { src: '/projects/payslip.webp', srcSm: '/projects/payslip-sm.webp', width: 1560, height: 2094, alt: 'PaySlip sign-in and create-account screens' },
+    shot: { src: '/projects/payslip.webp', srcSm: '/projects/payslip-sm.webp', thumb: '/projects/payslip-thumb.webp', width: 1560, height: 2094, alt: 'PaySlip sign-in and create-account screens' },
   },
   {
     id: 'thinkboard',
@@ -109,6 +109,6 @@ export const projects: Project[] = [
     // Previously labelled "Active System" on the site. Confirm before showing.
     status: 'TODO: Active System',
     card: { bg: '#F5EDE4', fg: '#4A1424', glow: '#FDBA74' },
-    shot: { src: '/projects/thinkboard.webp', srcSm: '/projects/thinkboard-sm.webp', width: 1560, height: 3169, alt: 'ThinkBoard screens: notes grid, edit note and create note' },
+    shot: { src: '/projects/thinkboard.webp', srcSm: '/projects/thinkboard-sm.webp', thumb: '/projects/thinkboard-thumb.webp', width: 1560, height: 3169, alt: 'ThinkBoard screens: notes grid, edit note and create note' },
   },
 ];
