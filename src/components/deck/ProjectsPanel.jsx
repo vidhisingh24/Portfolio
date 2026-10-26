@@ -8,7 +8,7 @@ const ProjectsPanel = ({ onOpen }) => (
   <section className="dpanel dpanel--projects" aria-labelledby="panel-projects-title">
     <div className="dpanel__bg" aria-hidden="true" />
     <header className="dpanel__head">
-      <p className="dpanel__eyebrow">01 / 04 · work</p>
+      <p className="dpanel__eyebrow">01 / 05 · work</p>
       <h2 id="panel-projects-title" className="dpanel__title">
         Projects<span className="dot">.</span>
       </h2>
