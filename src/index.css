@@ -329,7 +329,7 @@ body {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* still scrolls on short screens, without a grey bar */
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -425,6 +425,8 @@ body {
 .note--tr { top: 15%; right: 0; background: #FFE2D1; transform: rotate(5deg); }
 .note--bl { bottom: 26%; left: 0; background: #D9F5E4; transform: rotate(3deg); }
 .note--br { bottom: 7%; right: 2%; background: #FFF1BF; transform: rotate(-4deg); }
+
+.studio-viewport::-webkit-scrollbar { display: none; }
 
 .studio-intro { flex: none; }
 .studio-name {
