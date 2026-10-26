@@ -18,5 +18,5 @@ export const SHOW_PANEL = 'deck:panel';
 /** Show the project list; pass a project id to land on that card. */
 export const openProjects = (id) => window.dispatchEvent(new CustomEvent(OPEN_PROJECTS, { detail: id ?? null }));
 
-/** Show the panels and scroll to one: 'work' | 'open-source' | 'skills' | 'github'. */
+/** Show the panels and scroll to one: 'work' | 'open-source' | 'journey' | 'skills' | 'github'. */
 export const showPanel = (id) => window.dispatchEvent(new CustomEvent(SHOW_PANEL, { detail: id }));
