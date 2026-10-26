@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,15 +10,16 @@
     <meta name="keywords" content="Vidhi Singh, Software Engineer, Computer Engineering, React, AI, Machine Learning, GitHub, GSSoC, Open Source Developer, India" />
     <meta name="author" content="Vidhi Singh" />
     <link rel="canonical" href="https://vidhisingh-portfolio.vercel.app/" />
-    <meta name="theme-color" content="#FFFBF5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#141210" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F3FD" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F0B1A" media="(prefers-color-scheme: dark)" />
 
     <!-- Icons -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Hero photo is the largest element on first paint: fetch it early -->
+    <!-- First project screenshot + profile photo are on screen at first paint: fetch them early -->
+    <link rel="preload" as="image" href="/projects/collabspace-sm.webp" imagesrcset="/projects/collabspace-sm.webp 780w, /projects/collabspace.webp 1560w" imagesizes="(min-width: 1024px) min(820px, 54vw), 88vw" type="image/webp" fetchpriority="high" media="(min-width: 1024px)" />
     <link rel="preload" as="image" href="/images/vidhi.webp" type="image/webp" fetchpriority="high" />
 
     <!-- Open Graph -->
@@ -64,23 +65,13 @@
       }
     </script>
 
-    <!-- Set the theme before first paint (saved choice, else system preference) -->
-    <script>
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-        }
-      } catch (e) {}
-    </script>
 
-    <!-- Fonts are self-hosted (see src/index.css); preload the ones used above the fold -->
+    <!-- Fonts are self-hosted (see src/index.css); preload the ones used on first paint -->
     <link rel="preload" href="/fonts/schibsted-grotesk-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/schibsted-grotesk-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/geist-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/geist-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/geist-mono-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/caveat-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="antialiased">
     <div id="root"></div>
