@@ -2,14 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { ThemeProvider } from './context/ThemeContext.jsx'
 
 const root = document.getElementById('root')
 const app = (
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 )
 
