@@ -37,7 +37,7 @@ const VidhiBot = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40">
+    <div className="vidhibot fixed z-40">
       {isOpen && (
         <div
           id="vidhibot-panel"
