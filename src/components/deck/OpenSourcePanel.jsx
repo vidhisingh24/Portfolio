@@ -7,7 +7,7 @@ const OpenSourcePanel = () => (
   <section id="open-source" className="dpanel dpanel--os" aria-labelledby="panel-os-title">
     <div className="dpanel__bg" aria-hidden="true" />
     <header className="dpanel__head">
-      <p className="dpanel__eyebrow">02 / 04 · open source</p>
+      <p className="dpanel__eyebrow">02 / 05 · open source</p>
       <h2 id="panel-os-title" className="dpanel__title">
         Open source<span className="dot">.</span>
       </h2>

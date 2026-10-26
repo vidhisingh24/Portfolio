@@ -86,7 +86,7 @@ const GitHubPanel = () => {
     <section id="github" ref={rootRef} className="dpanel dpanel--gh" aria-labelledby="panel-gh-title">
       <div className="dpanel__bg" aria-hidden="true" />
       <header className="dpanel__head">
-        <p className="dpanel__eyebrow">04 / 04 · github</p>
+        <p className="dpanel__eyebrow">05 / 05 · github</p>
         <h2 id="panel-gh-title" className="dpanel__title">
           GitHub activity<span className="dot">.</span>
         </h2>

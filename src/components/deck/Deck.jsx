@@ -2,6 +2,7 @@ import { Suspense, lazy, useCallback, useEffect, useReducer, useRef, useState } 
 import Work from '../work/Work';
 import ProjectsPanel from './ProjectsPanel';
 import OpenSourcePanel from './OpenSourcePanel';
+import JourneyPanel from './JourneyPanel';
 import SkillsPanel from './SkillsPanel';
 import GitHubPanel from './GitHubPanel';
 import { projects } from '../../data/projects';
@@ -15,7 +16,7 @@ const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)')
 
 /**
  * Left column.
- * "Panels" view: Projects (cover) → Open source → Skills → GitHub activity.
+ * "Panels" view: Projects (cover) → Open source → Achievements & journey → Skills → GitHub activity.
  * Clicking the Projects panel swaps the column to the project list, with a back button.
  * The list has its own URL (#projects), so the browser back button works too.
  */
@@ -106,11 +107,12 @@ const Deck = () => {
   }, [openId]);
 
   return (
-    <section id="work" ref={rootRef} className={`work work--${view}`} aria-label={view === 'projects' ? 'Projects' : 'Projects, open source, skills and GitHub'}>
+    <section id="work" ref={rootRef} className={`work work--${view}`} aria-label={view === 'projects' ? 'Projects' : 'Projects, open source, journey, skills and GitHub'}>
       {view === 'panels' ? (
         <>
           <ProjectsPanel onOpen={showProjects} />
           <OpenSourcePanel />
+          <JourneyPanel />
           <SkillsPanel />
           <GitHubPanel />
         </>
@@ -126,7 +128,7 @@ const Deck = () => {
           </div>
           <Work onOpen={openCase} />
           <button type="button" className="deck-more" onClick={() => showPanels('open-source')}>
-            Next: open source, skills and GitHub <span aria-hidden="true">→</span>
+            Next: open source, journey, skills and GitHub <span aria-hidden="true">→</span>
           </button>
         </>
       )}

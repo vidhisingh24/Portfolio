@@ -6,7 +6,7 @@ const SkillsPanel = () => (
   <section id="skills" className="dpanel dpanel--skills" aria-labelledby="panel-skills-title">
     <div className="dpanel__bg" aria-hidden="true" />
     <header className="dpanel__head">
-      <p className="dpanel__eyebrow">03 / 04 · skills</p>
+      <p className="dpanel__eyebrow">04 / 05 · skills</p>
       <h2 id="panel-skills-title" className="dpanel__title">
         Skills<span className="dot">.</span>
       </h2>

@@ -37,6 +37,7 @@ const CommandPalette = ({ open, onOpenChange }) => {
           {item('go top home', '#', 'Top', () => scrollToId('top'))}
           {item('go projects work list', '#', 'Projects', () => openProjects())}
           {item('go open source gssoc ssoc osci programs', '#', 'Open source', () => showPanel('open-source'))}
+          {item('go achievements journey hackathons path ai ml', '#', 'Achievements & journey', () => showPanel('journey'))}
           {item('go skills stack tech', '#', 'Skills', () => showPanel('skills'))}
           {item('go github activity contributions graph', '#', 'GitHub activity', () => showPanel('github'))}
           {item('open about', '#', 'About', () => openPanel('about'))}
