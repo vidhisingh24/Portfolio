@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { OPEN_PALETTE } from './lib/palette';
 import ProfileCard from './components/studio/ProfileCard';
-import Work from './components/work/Work';
+import Deck from './components/deck/Deck';
 import Closing from './components/closing/Closing';
 
 // Loaded after the first paint / on first use
@@ -11,8 +11,8 @@ const Toasts = lazy(() => import('./components/Toasts'));
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
 
 /**
- * Two-panel layout: project cards on the left, a fixed profile card on the right
- * (on phones the profile card comes first), then the closing panel.
+ * Two-panel layout: the deck (projects, open source, skills, GitHub) on the left,
+ * a fixed profile card on the right (on phones the profile card comes first), then the closing panel.
  */
 function App() {
   const [idle, setIdle] = useState(false);
@@ -51,11 +51,11 @@ function App() {
   return (
     <>
       <a href="#work" className="skip-link">
-        Skip to projects
+        Skip to work
       </a>
       <main id="top" className="shell">
         <ProfileCard />
-        <Work />
+        <Deck />
       </main>
       <Closing />
 
