@@ -4,7 +4,7 @@ import { profile } from '../data/profile';
 import { projects } from '../data/projects';
 import { scrollToId } from '../lib/scroll';
 import { copyText } from '../lib/palette';
-import { openPanel } from '../lib/ui';
+import { openPanel, openProjects, showPanel } from '../lib/ui';
 import { OPEN_CASE } from './work/caseEvents';
 
 /** ⌘K / Ctrl+K palette: jump around, open case studies, copy email, open links. */
@@ -35,7 +35,10 @@ const CommandPalette = ({ open, onOpenChange }) => {
 
         <Command.Group heading="Go to">
           {item('go top home', '#', 'Top', () => scrollToId('top'))}
-          {item('go work projects', '#', 'Work', () => scrollToId('work'))}
+          {item('go projects work list', '#', 'Projects', () => openProjects())}
+          {item('go open source gssoc ssoc osci programs', '#', 'Open source', () => showPanel('open-source'))}
+          {item('go skills stack tech', '#', 'Skills', () => showPanel('skills'))}
+          {item('go github activity contributions graph', '#', 'GitHub activity', () => showPanel('github'))}
           {item('open about', '#', 'About', () => openPanel('about'))}
           {item('open faqs questions', '#', 'FAQs', () => openPanel('faqs'))}
           {item('go contact say hello', '#', 'Contact', () => scrollToId('contact'))}
